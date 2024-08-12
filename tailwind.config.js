@@ -23,6 +23,7 @@ const config = {
     extend: {
       colors: {
         green: {
+          200: "#037b78",
           500: "#24AE7C",
           600: "#0D2A1F",
         },
@@ -40,11 +41,11 @@ const config = {
         },
         dark: {
           200: "#0D0F10",
-          300: "#10a9b9",
+          300: "#131619",
           400: "#1A1D21",
-          500: "#ffffff",
+          500: "#363A3D",
           600: "#76828D",
-          700: "#ffffff",
+          700: "#ABB8C4",
         },
       },
       fontFamily: {

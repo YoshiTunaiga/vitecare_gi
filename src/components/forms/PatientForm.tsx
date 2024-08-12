@@ -6,9 +6,9 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 
 import { Form } from "../../components/ui/form";
-import { Button } from "../ui/button";
 import { UserFormValidation } from "@/lib/validation";
 import emailIcon from "../../assets/icons/email.svg";
 import userIcon from "../../assets/icons/user.svg";
@@ -16,9 +16,11 @@ import userIcon from "../../assets/icons/user.svg";
 // Style
 import "react-phone-number-input/style.css";
 import CustomFormField, { FormFieldType } from "../CustomFormField";
+import SubmitButton from "../SubmitButton";
 
 const PatientForm = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
 
   const form = useForm<z.infer<typeof UserFormValidation>>({
     resolver: zodResolver(UserFormValidation),
@@ -42,7 +44,7 @@ const PatientForm = () => {
       const newUser = await createUser(user);
 
       if (newUser) {
-        router.push(`/patients/${newUser.$id}/register`);
+        navigate(`/patients/${newUser.$id}/register`);
       }
     } catch (error) {
       console.log(error);
@@ -56,7 +58,7 @@ const PatientForm = () => {
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
         <section className="mb-12 space-y-4">
           <h1 className="header">Hi There</h1>
-          <p className="text-dark-700">Schedule your first appointment.</p>
+          <p className="text-light-200">Schedule your first appointment.</p>
         </section>
 
         <CustomFormField
@@ -87,7 +89,7 @@ const PatientForm = () => {
           placeholder="(555) 123-4567"
         />
 
-        <Button type="submit">Submit</Button>
+        <SubmitButton isLoading={isLoading}>Get Started</SubmitButton>
       </form>
     </Form>
   );
