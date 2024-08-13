@@ -9,7 +9,7 @@ import { SelectItem } from "../../components/ui/select";
 import { Doctors } from "../../constants";
 import {
   createAppointment,
-  updateAppointment,
+  // updateAppointment,
 } from "../../lib/actions/appointment.actions";
 import { getAppointmentSchema } from "../../lib/validation";
 import { Appointment } from "../../types/appwrite.types";
@@ -86,29 +86,31 @@ export const AppointmentForm = ({
         if (newAppointment) {
           form.reset();
           router(
+            // `/patients/${userId}/new-appointment/success?appointmentId=${newAppointment.$id}`
             `/patients/${userId}/new-appointment/success?appointmentId=${newAppointment.$id}`
           );
         }
-      } else {
-        const appointmentToUpdate = {
-          userId,
-          appointmentId: appointment?.$id!,
-          appointment: {
-            primaryPhysician: values.primaryPhysician,
-            schedule: new Date(values.schedule),
-            status: status as Status,
-            cancellationReason: values.cancellationReason,
-          },
-          type,
-        };
-
-        const updatedAppointment = await updateAppointment(appointmentToUpdate);
-
-        if (updatedAppointment) {
-          setOpen && setOpen(false);
-          form.reset();
-        }
       }
+      // else {
+      //   const appointmentToUpdate = {
+      //     userId,
+      //     appointmentId: appointment?.$id!,
+      //     appointment: {
+      //       primaryPhysician: values.primaryPhysician,
+      //       schedule: new Date(values.schedule),
+      //       status: status as Status,
+      //       cancellationReason: values.cancellationReason,
+      //     },
+      //     type,
+      //   };
+
+      //   const updatedAppointment = await updateAppointment(appointmentToUpdate);
+
+      //   if (updatedAppointment) {
+      //     setOpen && setOpen(false);
+      //     form.reset();
+      //   }
+      // }
     } catch (error) {
       console.log(error);
     }
@@ -133,9 +135,7 @@ export const AppointmentForm = ({
         {type === "create" && (
           <section className="mb-12 space-y-4">
             <h1 className="header">New Appointment</h1>
-            <p className="text-white">
-              Request a new appointment in 10 seconds.
-            </p>
+            <p className="text-white">Request a new appointment in seconds.</p>
           </section>
         )}
 
@@ -209,7 +209,11 @@ export const AppointmentForm = ({
 
         <SubmitButton
           isLoading={isLoading}
-          className="bg-green-500 w-full hover:bg-green-700">
+          className={`${
+            type === "cancel"
+              ? "shad-danger-btn"
+              : "bg-green-500 w-full hover:bg-green-700"
+          }`}>
           {buttonLabel}
         </SubmitButton>
       </form>

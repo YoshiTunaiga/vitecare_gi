@@ -3,12 +3,13 @@ import { Routes, Route } from "react-router-dom";
 // Pages
 import Home from "./pages/Home";
 import Register from "./pages/patients/[userId]/register/page";
-import NewAppointment from "./pages/patients/[userId]/new-appointments/page";
+import NewAppointment from "./pages/patients/[userId]/new-appointment/page";
 
 // Styles
 import { ThemeProvider } from "./components/theme-provider";
 import { cn } from "./lib/utils";
 import "./App.css";
+import RequestSuccess from "./pages/patients/[userId]/new-appointment/success/page";
 
 function App() {
   return (
@@ -20,6 +21,10 @@ function App() {
           <Route
             path="/patients/:userId/new-appointment"
             element={<NewAppointment />}
+          />
+          <Route
+            path="/patients/:userId/new-appointment/success"
+            element={<RequestSuccess />}
           />
         </Routes>
       </ThemeProvider>
