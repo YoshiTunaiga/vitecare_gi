@@ -8,7 +8,8 @@ export const {
   VITE_DOCTOR_COLLECTION_ID,
   VITE_APPOINTMENT_COLLECTION_ID,
   VITE_PUBLIC_BUCKET_ID: BUCKET_ID,
-  VITE_PUBLIC_ENDPOINT: ENDPOINT,
+  VITE_PUBLIC_ENDPOINT: ENDPOINT, // https://appwrite.io/docs/references/cloud/server-nodejs/users
+  VITE_PUBLIC_ADMIN_PASSKEY,
 } = import.meta.env;
 
 const client = new sdk.Client();

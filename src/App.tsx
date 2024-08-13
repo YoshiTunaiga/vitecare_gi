@@ -10,6 +10,7 @@ import { ThemeProvider } from "./components/theme-provider";
 import { cn } from "./lib/utils";
 import "./App.css";
 import RequestSuccess from "./pages/patients/[userId]/new-appointment/success/page";
+import AdminPage from "./pages/admin/page";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
             path="/patients/:userId/new-appointment/success"
             element={<RequestSuccess />}
           />
+          <Route path="/admin" element={<AdminPage />} />
         </Routes>
       </ThemeProvider>
     </div>

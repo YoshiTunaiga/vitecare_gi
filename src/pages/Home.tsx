@@ -1,10 +1,16 @@
 import PatientForm from "../components/forms/PatientForm";
 import vitecarelogo from "../assets/vclogo.png";
+import { useSearchParams } from "react-router-dom";
+import { PasskeyModal } from "../components/PasskeyModal";
 
 const Home = () => {
+  const [searchParams]: [URLSearchParams, Function] = useSearchParams();
+  const isAdmin = searchParams.get("admin");
+
   return (
     <div className="text-white flex h-screen max-h-screen bg-[url('./assets/images/providerbg.png')]">
-      {/* TODO: OTP VERIFICATION | PassKeyModal */}
+      {isAdmin && <PasskeyModal />}
+
       <section className="remove-scrollbar container my-auto bg-gradient-to-r from-dark-600">
         <div className="sub-container max-w-[496px]">
           <img

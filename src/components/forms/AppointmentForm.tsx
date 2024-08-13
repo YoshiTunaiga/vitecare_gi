@@ -9,7 +9,7 @@ import { SelectItem } from "../../components/ui/select";
 import { Doctors } from "../../constants";
 import {
   createAppointment,
-  // updateAppointment,
+  updateAppointment,
 } from "../../lib/actions/appointment.actions";
 import { getAppointmentSchema } from "../../lib/validation";
 import { Appointment } from "../../types/appwrite.types";
@@ -86,31 +86,30 @@ export const AppointmentForm = ({
         if (newAppointment) {
           form.reset();
           router(
-            // `/patients/${userId}/new-appointment/success?appointmentId=${newAppointment.$id}`
             `/patients/${userId}/new-appointment/success?appointmentId=${newAppointment.$id}`
           );
         }
+      } else {
+        const appointmentToUpdate = {
+          userId,
+          appointmentId: appointment?.$id!,
+          appointment: {
+            primaryPhysician: values.primaryPhysician,
+            schedule: new Date(values.schedule),
+            status: status as Status,
+            cancellationReason: values.cancellationReason,
+          },
+          type,
+        };
+
+        const updatedAppointment = await updateAppointment(appointmentToUpdate);
+
+        if (updatedAppointment) {
+          setOpen && setOpen(false);
+          form.reset();
+          router(0);
+        }
       }
-      // else {
-      //   const appointmentToUpdate = {
-      //     userId,
-      //     appointmentId: appointment?.$id!,
-      //     appointment: {
-      //       primaryPhysician: values.primaryPhysician,
-      //       schedule: new Date(values.schedule),
-      //       status: status as Status,
-      //       cancellationReason: values.cancellationReason,
-      //     },
-      //     type,
-      //   };
-
-      //   const updatedAppointment = await updateAppointment(appointmentToUpdate);
-
-      //   if (updatedAppointment) {
-      //     setOpen && setOpen(false);
-      //     form.reset();
-      //   }
-      // }
     } catch (error) {
       console.log(error);
     }
@@ -149,7 +148,7 @@ export const AppointmentForm = ({
               placeholder="Select a doctor">
               {Doctors.map((doctor, i) => (
                 <SelectItem key={doctor.name + i} value={doctor.name}>
-                  <div className="flex cursor-pointer items-center gap-2">
+                  <div className="text-white flex cursor-pointer items-center gap-2">
                     <img
                       src={doctor.image}
                       width={32}
