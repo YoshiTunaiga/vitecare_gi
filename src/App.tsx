@@ -1,14 +1,14 @@
 import { Routes, Route } from "react-router-dom";
+
+// Pages
 import Home from "./pages/Home";
+import Register from "./pages/patients/[userId]/register/page";
+import NewAppointment from "./pages/patients/[userId]/new-appointments/page";
 
-// import vitecarelogo from "./assets/vclogo.png";
-// import onboardingimg from "./assets/images/onboardingimg.png";
-// import PatientForm from "./components/forms/PatientForm";
-
+// Styles
 import { ThemeProvider } from "./components/theme-provider";
 import { cn } from "./lib/utils";
 import "./App.css";
-import Register from "./pages/patients/[userId]/register/page";
 
 function App() {
   return (
@@ -17,6 +17,10 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/patients/:userId/register" element={<Register />} />
+          <Route
+            path="/patients/:userId/new-appointment"
+            element={<NewAppointment />}
+          />
         </Routes>
       </ThemeProvider>
     </div>

@@ -81,7 +81,7 @@ const RegisterForm = ({ user }: { user: User }) => {
         identificationType: values.identificationType,
         identificationNumber: values.identificationNumber,
         identificationDocument: values.identificationDocument
-          ? formData
+          ? formData // uploaded file
           : undefined,
         privacyConsent: values.privacyConsent,
       };

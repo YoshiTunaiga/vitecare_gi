@@ -48,6 +48,11 @@ const config = {
           700: "#ABB8C4",
         },
       },
+      opacity: {
+        15: "0.15",
+        35: "0.35",
+        65: "0.65",
+      },
       fontFamily: {
         sans: ["var(--font-sans)", ...fontFamily.sans],
       },

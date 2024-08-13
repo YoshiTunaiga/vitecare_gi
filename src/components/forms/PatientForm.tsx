@@ -9,7 +9,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
 import { Form } from "../../components/ui/form";
-import { UserFormValidation } from "@/lib/validation";
+import { UserFormValidation } from "../../lib/validation";
 import emailIcon from "../../assets/icons/email.svg";
 import userIcon from "../../assets/icons/user.svg";
 
@@ -17,7 +17,7 @@ import userIcon from "../../assets/icons/user.svg";
 import "react-phone-number-input/style.css";
 import CustomFormField, { FormFieldType } from "../CustomFormField";
 import SubmitButton from "../SubmitButton";
-import { createUser } from "@/lib/actions/patient.actions";
+import { createUser } from "../../lib/actions/patient.actions";
 
 const PatientForm = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -90,7 +90,11 @@ const PatientForm = () => {
           placeholder="(555) 123-4567"
         />
 
-        <SubmitButton isLoading={isLoading}>Get Started</SubmitButton>
+        <SubmitButton
+          isLoading={isLoading}
+          className="bg-green-500 w-full hover:bg-green-700">
+          Get Started
+        </SubmitButton>
       </form>
     </Form>
   );

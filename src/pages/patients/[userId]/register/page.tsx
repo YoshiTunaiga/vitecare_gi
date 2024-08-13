@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import logofull from "../../../../assets/vclogo.png";
-import registerImg from "../../../../assets/images/register-img.png";
+import registerImg from "../../../../assets/images/registerbg.png";
 import { useParams } from "react-router-dom";
 import { getPatient, getUser } from "../../../../lib/actions/patient.actions";
 import RegisterForm from "../../../../components/forms/RegisterForm";
@@ -28,7 +28,7 @@ const Register = () => {
   }, [userId, navigate]);
 
   return (
-    <div className="text-white flex h-screen max-h-screen">
+    <div className="text-white flex h-screen max-h-screen ">
       <section className="remove-scrollbar container">
         <div className="sub-container max-w-[860px] flex-1 flex-col py-10">
           <img

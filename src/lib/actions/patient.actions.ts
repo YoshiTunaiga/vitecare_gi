@@ -28,7 +28,6 @@ export const createUser = async (user: CreateUserParams) => {
     );
 
     return parseStringify(newuser);
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     // Check existing user
     if (error && error?.code === 409) {
@@ -69,7 +68,7 @@ export const registerPatient = async ({
       const inputFile =
         identificationDocument &&
         InputFile.fromBuffer(
-          identificationDocument?.get("blobFile") as Blob,
+          identificationDocument?.get("blobFile") as Blob, // special version of file that can be read
           identificationDocument?.get("fileName") as string
         );
 

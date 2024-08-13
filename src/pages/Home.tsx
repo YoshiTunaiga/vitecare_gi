@@ -1,4 +1,4 @@
-import PatientForm from "@/components/forms/PatientForm";
+import PatientForm from "../components/forms/PatientForm";
 import vitecarelogo from "../assets/vclogo.png";
 
 const Home = () => {
@@ -21,7 +21,9 @@ const Home = () => {
             <p className="justify-items-end text-light-200 xl:text-left">
               © 2024 ViteCare
             </p>
-            <a href="/?admin=true">Admin</a>
+            <a href="/?admin=true" className="hover:text-dark-400 ">
+              Admin
+            </a>
           </div>
         </div>
       </section>
