@@ -17,6 +17,7 @@ import userIcon from "../../assets/icons/user.svg";
 import "react-phone-number-input/style.css";
 import CustomFormField, { FormFieldType } from "../CustomFormField";
 import SubmitButton from "../SubmitButton";
+import { createUser } from "@/lib/actions/patient.actions";
 
 const PatientForm = () => {
   const [isLoading, setIsLoading] = useState(false);

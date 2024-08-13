@@ -1,19 +1,22 @@
 import * as sdk from "node-appwrite";
 
 export const {
-  PROJECT_ID,
-  API_KEY,
-  DATABASE_ID,
-  PATIENT_COLLECTION_ID,
-  DOCTOR_COLLECTION_ID,
-  APPOINTMENT_COLLECTION_ID,
+  VITE_PROJECT_ID,
+  VITE_API_KEY,
+  VITE_DATABASE_ID,
+  VITE_PATIENT_COLLECTION_ID,
+  VITE_DOCTOR_COLLECTION_ID,
+  VITE_APPOINTMENT_COLLECTION_ID,
   VITE_PUBLIC_BUCKET_ID: BUCKET_ID,
   VITE_PUBLIC_ENDPOINT: ENDPOINT,
-} = process.env;
+} = import.meta.env;
 
 const client = new sdk.Client();
 
-client.setEndpoint(ENDPOINT!).setProject(PROJECT_ID!).setKey(API_KEY!);
+client
+  .setEndpoint(ENDPOINT!)
+  .setProject(VITE_PROJECT_ID!)
+  .setKey(VITE_API_KEY!);
 
 export const databases = new sdk.Databases(client);
 export const users = new sdk.Users(client);

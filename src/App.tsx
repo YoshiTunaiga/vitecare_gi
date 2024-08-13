@@ -8,6 +8,7 @@ import Home from "./pages/Home";
 import { ThemeProvider } from "./components/theme-provider";
 import { cn } from "./lib/utils";
 import "./App.css";
+import Register from "./pages/patients/[userId]/register/page";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/patients/:userId/register" element={<Register />} />
         </Routes>
       </ThemeProvider>
     </div>
