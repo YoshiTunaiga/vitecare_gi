@@ -232,7 +232,7 @@ const RegisterForm = ({ user }: { user: User }) => {
             placeholder="Select a physician">
             {Doctors.map((doctor, i) => (
               <SelectItem key={doctor.name + i} value={doctor.name}>
-                <div className="flex cursor-pointer items-center gap-2">
+                <div className="text-white flex cursor-pointer items-center gap-2">
                   <img
                     src={doctor.image}
                     width={32}
@@ -316,7 +316,7 @@ const RegisterForm = ({ user }: { user: User }) => {
             label="Identification Type"
             placeholder="Select identification type">
             {IdentificationTypes.map((type, i) => (
-              <SelectItem key={type + i} value={type}>
+              <SelectItem key={type + i} value={type} className="text-white">
                 {type}
               </SelectItem>
             ))}
