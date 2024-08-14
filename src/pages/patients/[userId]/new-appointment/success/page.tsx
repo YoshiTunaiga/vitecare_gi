@@ -1,4 +1,5 @@
 import { Link, useParams, useSearchParams } from "react-router-dom";
+import * as Sentry from "@sentry/react";
 import { Button } from "../../../../../components/ui/button";
 import { Doctors } from "../../../../../constants";
 import { getAppointment } from "../../../../../lib/actions/appointment.actions";
@@ -7,15 +8,22 @@ import { useEffect, useState } from "react";
 import vclogo from "../../../../../assets/vclogo.png";
 import successgif from "../../../../../assets/gifs/success.gif";
 import calendargif from "../../../../../assets/icons/calendar.svg";
+import { getUser } from "../../../../../lib/actions/patient.actions";
 
 const RequestSuccess = () => {
   let [searchParams]: [URLSearchParams, Function] = useSearchParams();
+  const [user, setUser] = useState({ $id: "", phone: "", name: "", email: "" });
   const { userId } = useParams();
   const [doctor, setDoctor] = useState({ image: "", name: "" });
   const [appointment, setAppointment] = useState({ schedule: "" });
 
+  // Sentry Metricts for page usage
+  Sentry.metrics.set("user_view_appointment-success", user.name);
+
   useEffect(() => {
     const fetchDoctor = async (userId: string) => {
+      const userReturned = await getUser(userId);
+      setUser(userReturned);
       const appointmentId = (searchParams.get("appointmentId") as string) || "";
 
       const appointment = await getAppointment(appointmentId);
@@ -32,8 +40,8 @@ const RequestSuccess = () => {
   }, []);
 
   return (
-    <div className=" flex h-screen bg-green-700/25 text-white max-h-screen px-[5%] bg-white">
-      <div className="success-img">
+    <div className=" flex h-screen bg-green-700/25 text-black max-h-screen px-[5%] bg-white">
+      <div className="success-img bg-green-700/40">
         <Link to="/">
           <img
             src={vclogo}

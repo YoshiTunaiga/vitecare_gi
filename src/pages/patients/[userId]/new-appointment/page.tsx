@@ -4,9 +4,14 @@ import { getPatient } from "../../../../lib/actions/patient.actions";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
+import * as Sentry from "@sentry/react";
+
 const NewAppointment = () => {
-  const [patient, setPatient] = useState({ $id: "" });
+  const [patient, setPatient] = useState({ $id: "", name: "" });
   const { userId } = useParams();
+
+  // Sentry Metricts for page usage
+  Sentry.metrics.set("user_view_new-appointment", patient.name);
 
   useEffect(() => {
     const fetchPatient = async (userId: string) => {

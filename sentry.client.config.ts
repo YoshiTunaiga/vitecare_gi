@@ -21,8 +21,8 @@ Sentry.init({
     Sentry.browserTracingIntegration(),
     Sentry.replayIntegration({
       // Additional Replay configuration goes in here, for example:
-      maskAllText: true,
-      blockAllMedia: true,
+      // maskAllText: true,
+      // blockAllMedia: true,
     }),
   ],
 });

@@ -15,6 +15,16 @@ import {
 } from "../appwrite.config";
 import { parseStringify } from "../utils";
 
+/**
+ * TODO:
+ * patient.actions.ts:22
+ * POST https://cloud.appwrite.io/v1/users 409 (Conflict)
+ * createUser	@	patient.actions.ts:22
+ * onSubmit	@	PatientForm.tsx:45
+ * Show 20 more frames
+ * @param user
+ * @returns Object
+ */
 // CREATE APPWRITE USER
 export const createUser = async (user: CreateUserParams) => {
   try {

@@ -5,11 +5,15 @@ import { useParams } from "react-router-dom";
 import { getPatient, getUser } from "../../../../lib/actions/patient.actions";
 import RegisterForm from "../../../../components/forms/RegisterForm";
 import { useEffect, useState } from "react";
+import * as Sentry from "@sentry/react";
 
 const Register = () => {
   const [user, setUser] = useState({ $id: "", phone: "", name: "", email: "" });
   const navigate = useNavigate();
   const { userId } = useParams();
+
+  // Sentry Metricts for page usage
+  Sentry.metrics.set("user_view_register", user.name);
 
   useEffect(() => {
     const fetchData = async (userId: string) => {
