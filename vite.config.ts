@@ -1,23 +1,40 @@
-import { defineConfig } from "vite";
+import { defineConfig, loadEnv } from "vite";
 import react from "@vitejs/plugin-react";
 import { resolve } from "path";
+import { sentryVitePlugin } from "@sentry/vite-plugin";
+import { nodePolyfills } from "vite-plugin-node-polyfills";
 
-export default defineConfig({
-  plugins: [react()],
-  optimizeDeps: {
-    exclude: ["fs"],
-  },
-  build: {
-    rollupOptions: {
-      external: ["fs"],
+// https://vitejs.dev/config/
+export default ({ mode }: { mode: any }) => {
+  process.env = { ...process.env, ...loadEnv(mode, process.cwd()) };
+
+  return defineConfig({
+    plugins: [
+      react(),
+      nodePolyfills(),
+      sentryVitePlugin({
+        org: "gi-diaz-solutions",
+        project: "javascript-react",
+        authToken: process.env.VITE_SENTRY_AUTH_TOKEN,
+      }),
+    ],
+    optimizeDeps: {
+      exclude: ["fs"],
     },
-  },
-  resolve: {
-    alias: {
-      fs: resolve(__dirname, "fs-mock.js"),
+    build: {
+      rollupOptions: {
+        input: "./index.html",
+        external: ["fs"],
+      },
     },
-  },
-});
+    resolve: {
+      alias: {
+        "@": resolve(__dirname, "./src"),
+        fs: resolve(__dirname, "fs-mock.js"),
+      },
+    },
+  });
+};
 
 // import { sentryVitePlugin } from "@sentry/vite-plugin";
 // import builtins from "rollup-plugin-node-builtins";
