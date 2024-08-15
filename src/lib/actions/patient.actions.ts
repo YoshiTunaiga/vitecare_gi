@@ -32,7 +32,7 @@ export const createUser = async (user: CreateUserParams) => {
   try {
     const existingUser = await users.list([Query.equal("email", [user.email])]);
     if (existingUser.total) {
-      return existingUser.users[0];
+      return { newUser: existingUser.users[0], isMember: true };
     } else {
       // Create new user -> https://appwrite.io/docs/references/1.5.x/server-nodejs/users#create
       const newuser = await users.create(
@@ -43,7 +43,7 @@ export const createUser = async (user: CreateUserParams) => {
         user.name
       );
 
-      return parseStringify(newuser);
+      return { newUser: parseStringify(newuser), isMember: false };
     }
   } catch (error: any) {
     // Check existing user
@@ -52,7 +52,7 @@ export const createUser = async (user: CreateUserParams) => {
         Query.equal("email", [user.email]),
       ]);
 
-      return existingUser.users[0];
+      return { newUser: existingUser.users[0], isMember: true };
     }
     console.error("An error occurred while creating a new user:", error);
   }

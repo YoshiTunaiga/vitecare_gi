@@ -28,6 +28,7 @@ export default ({ mode }: { mode: any }) => {
       },
     },
     server: {
+      // TODO: CORS ACCESS BLOCKED
       proxy: {
         "/users": {
           target: "https://cloud.appwrite.io/v1",

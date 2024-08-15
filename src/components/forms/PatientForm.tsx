@@ -43,10 +43,13 @@ const PatientForm = () => {
         phone: values.phone,
       };
 
-      const newUser = await createUser(user);
+      const response: { newUser: any; isMember: boolean } | any =
+        await createUser(user);
 
-      if (newUser) {
-        navigate(`/patients/${newUser.$id}/register`);
+      if (!response.isMember) {
+        navigate(`/patients/${response.newUser.$id}/register`);
+      } else {
+        navigate(`/patients/${response.newUser.$id}/new-appointment`);
       }
     } catch (error) {
       console.log(error);
