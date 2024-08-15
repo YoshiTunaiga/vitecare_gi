@@ -14,8 +14,7 @@ import drsharma from "../assets/images/dr-sharma.png";
 export const GenderOptions = ["male", "female", "other"];
 
 export const PatientFormDefaultValues = {
-  firstName: "",
-  lastName: "",
+  name: "Alo",
   email: "",
   phone: "",
   birthDate: new Date(Date.now()),

@@ -27,6 +27,15 @@ export default ({ mode }: { mode: any }) => {
         input: "./index.html",
       },
     },
+    server: {
+      proxy: {
+        "/users": {
+          target: "https://cloud.appwrite.io/v1",
+          changeOrigin: true,
+          secure: false,
+        },
+      },
+    },
     resolve: {
       alias: {
         "@": path.resolve(__dirname, "./src"),

@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { E164Number } from "libphonenumber-js/core";
 import ReactDatePicker from "react-datepicker";
-import { Control } from "react-hook-form";
+import { Control, useFormContext } from "react-hook-form";
 import PhoneInput from "react-phone-number-input";
 
 import { Checkbox } from "./ui/checkbox";
@@ -15,6 +15,7 @@ import {
 import { Input } from "./ui/input";
 import { Select, SelectContent, SelectTrigger, SelectValue } from "./ui/select";
 import { Textarea } from "./ui/textarea";
+import { useEffect } from "react";
 
 export enum FormFieldType {
   INPUT = "input",
@@ -39,6 +40,7 @@ interface CustomProps {
   children?: React.ReactNode;
   renderSkeleton?: (field: any) => React.ReactNode;
   fieldType: FormFieldType;
+  autofill?: string;
 }
 
 const RenderInput = ({ field, props }: { field: any; props: CustomProps }) => {
@@ -149,7 +151,12 @@ const RenderInput = ({ field, props }: { field: any; props: CustomProps }) => {
 };
 
 const CustomFormField = (props: CustomProps) => {
-  const { control, name, label } = props;
+  const { control, name, label, autofill } = props;
+  const { setValue } = useFormContext();
+
+  useEffect(() => {
+    if (autofill) setValue(name, autofill);
+  }, [autofill]);
 
   return (
     <FormField
