@@ -1,8 +1,4 @@
-import { useEffect, useState } from "react";
-import * as Sentry from "@sentry/react";
-import { useNavigate, useParams, Link } from "react-router-dom";
-
-import { getPatient, getUser } from "../../../../lib/actions/patient.actions";
+import { Link } from "react-router-dom";
 
 import RegisterForm from "../../../../components/forms/RegisterForm";
 

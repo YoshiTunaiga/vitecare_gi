@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { z } from "zod";
 import { useNavigate, useParams } from "react-router-dom";
+import * as Sentry from "@sentry/react";
 
 import { getUser, registerPatient } from "../../lib/actions/patient.actions";
 import { PatientFormValidation } from "../../lib/validation";
@@ -19,7 +20,7 @@ import {
 import CustomFormField, { FormFieldType } from "../CustomFormField";
 import { FileUploader } from "../FileUploader";
 import SubmitButton from "../SubmitButton";
-import { Form, FormControl } from "../../components/ui/form";
+import { FormControl } from "../../components/ui/form";
 import { Label } from "../../components/ui/label";
 import { RadioGroup, RadioGroupItem } from "../../components/ui/radio-group";
 import { SelectItem } from "../../components/ui/select";
@@ -42,6 +43,9 @@ const RegisterForm = () => {
     email: "",
   });
   const { userId } = useParams();
+
+  // Sentry Metricts for page usage
+  Sentry.metrics.set("user_view_register", user.name);
 
   useEffect(() => {
     setIsLoading(true);
