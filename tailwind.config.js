@@ -56,11 +56,6 @@ const config = {
       fontFamily: {
         sans: ["var(--font-sans)", ...fontFamily.sans],
       },
-      // backgroundImage: {
-      //   appointments: "url('./src/assets/images/appointments-bg.png')",
-      //   pending: "url('./src/assets/images/pending-bg.png')",
-      //   cancelled: "url('./src/assets/images/cancelled-bg.png')",
-      // },
       keyframes: {
         "accordion-down": {
           from: { height: "0" },

@@ -4,28 +4,35 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import { useNavigate } from "react-router-dom";
 
-import { Form, FormControl } from "../../components/ui/form";
-import { Label } from "../../components/ui/label";
-import { RadioGroup, RadioGroupItem } from "../../components/ui/radio-group";
-import { SelectItem } from "../../components/ui/select";
+import { registerPatient } from "../../lib/actions/patient.actions";
+import { PatientFormValidation } from "../../lib/validation";
 import {
   Doctors,
   GenderOptions,
   IdentificationTypes,
   PatientFormDefaultValues,
 } from "../../constants";
-import { registerPatient } from "../../lib/actions/patient.actions";
-import { PatientFormValidation } from "../../lib/validation";
-import userIcon from "../../assets/icons/user.svg";
-import emailIcon from "../../assets/icons/email.svg";
 
-import "react-datepicker/dist/react-datepicker.css";
-import "react-phone-number-input/style.css";
+// Components
 import CustomFormField, { FormFieldType } from "../CustomFormField";
 import { FileUploader } from "../FileUploader";
 import SubmitButton from "../SubmitButton";
-import { useNavigate } from "react-router-dom";
+import { Form, FormControl } from "../../components/ui/form";
+import { Label } from "../../components/ui/label";
+import { RadioGroup, RadioGroupItem } from "../../components/ui/radio-group";
+import { SelectItem } from "../../components/ui/select";
+
+// Assets
+import userIcon from "../../assets/icons/user.svg";
+import emailIcon from "../../assets/icons/email.svg";
+
+// Styles
+import "react-datepicker/dist/react-datepicker.css";
+import "react-phone-number-input/style.css";
+
+
 
 const RegisterForm = ({ user }: { user: User }) => {
   const router = useNavigate();

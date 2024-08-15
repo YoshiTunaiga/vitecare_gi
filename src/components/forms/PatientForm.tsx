@@ -8,16 +8,17 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
-import { Form } from "../../components/ui/form";
+// Components
 import { UserFormValidation } from "../../lib/validation";
+import { createUser } from "../../lib/actions/patient.actions";
+import CustomFormField, { FormFieldType } from "../CustomFormField";
+import SubmitButton from "../SubmitButton";
+import { Form } from "../../components/ui/form";
 import emailIcon from "../../assets/icons/email.svg";
 import userIcon from "../../assets/icons/user.svg";
 
 // Style
 import "react-phone-number-input/style.css";
-import CustomFormField, { FormFieldType } from "../CustomFormField";
-import SubmitButton from "../SubmitButton";
-import { createUser } from "../../lib/actions/patient.actions";
 
 const PatientForm = () => {
   const [isLoading, setIsLoading] = useState(false);

@@ -1,10 +1,8 @@
 "use server";
 
-// import { revalidatePath } from "next/cache";
 import { ID, Query } from "node-appwrite";
 
 import { Appointment } from "../../types/appwrite.types";
-
 import {
   VITE_APPOINTMENT_COLLECTION_ID,
   VITE_DATABASE_ID,

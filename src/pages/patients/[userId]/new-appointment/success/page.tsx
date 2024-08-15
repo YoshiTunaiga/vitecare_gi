@@ -1,14 +1,17 @@
+import { useEffect, useState } from "react";
 import { Link, useParams, useSearchParams } from "react-router-dom";
 import * as Sentry from "@sentry/react";
-import { Button } from "../../../../../components/ui/button";
-import { Doctors } from "../../../../../constants";
+
+import { getUser } from "../../../../../lib/actions/patient.actions";
 import { getAppointment } from "../../../../../lib/actions/appointment.actions";
+import { Doctors } from "../../../../../constants";
+
 import { formatDateTime } from "../../../../../lib/utils";
-import { useEffect, useState } from "react";
+import { Button } from "../../../../../components/ui/button";
+
 import vclogo from "../../../../../assets/vclogo.png";
 import successgif from "../../../../../assets/gifs/success.gif";
 import calendargif from "../../../../../assets/icons/calendar.svg";
-import { getUser } from "../../../../../lib/actions/patient.actions";
 
 const RequestSuccess = () => {
   let [searchParams]: [URLSearchParams, Function] = useSearchParams();

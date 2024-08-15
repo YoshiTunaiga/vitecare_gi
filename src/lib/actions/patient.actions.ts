@@ -2,15 +2,17 @@
 
 import { ID, Query } from "node-appwrite";
 // import { InputFile } from "node-appwrite/file";
+// InputFile uses fs that throws out build error
+// unless vite.config.ts is configured to resolve fs
 
 import {
-  BUCKET_ID,
+  // BUCKET_ID,
   VITE_DATABASE_ID,
-  ENDPOINT,
+  // ENDPOINT,
   VITE_PATIENT_COLLECTION_ID,
-  VITE_PROJECT_ID,
+  // VITE_PROJECT_ID,
   databases,
-  storage,
+  // storage,
   users,
 } from "../appwrite.config";
 import { parseStringify } from "../utils";
@@ -73,7 +75,7 @@ export const registerPatient = async ({
 }: RegisterUserParams) => {
   try {
     // Upload file ->  // https://appwrite.io/docs/references/cloud/client-web/storage#createFile
-    let file;
+    // let file;
     // if (identificationDocument) {
     //   const inputFile =
     //     identificationDocument &&

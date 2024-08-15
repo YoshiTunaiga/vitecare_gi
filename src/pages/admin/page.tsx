@@ -1,13 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import vitecarelogo from "../../assets/vclogo.png";
+
 import { getRecentAppointmentList } from "../../lib/actions/appointment.actions";
+
+// Components
 import StatCard from "../../components/StatCard";
+import { DataTable } from "../../components/table/DataTable";
+import { columns } from "../../components/table/columns";
+
+// Assets
+import vitecarelogo from "../../assets/vclogo.png";
 import calendarIcon from "../../assets/icons/appointments.svg";
 import pendingIcon from "../../assets/icons/pending.svg";
 import cancelledIcon from "../../assets/icons/cancelled.svg";
-import { DataTable } from "../../components/table/DataTable";
-import { columns } from "../../components/table/columns";
 
 const initialCounts = {
   scheduledCount: 0,

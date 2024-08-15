@@ -1,10 +1,10 @@
-import { AppointmentForm } from "../../../../components/forms/AppointmentForm";
-import vitecarelogo from "../../../../assets/vclogo.png";
-import { getPatient } from "../../../../lib/actions/patient.actions";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-
 import * as Sentry from "@sentry/react";
+
+import { AppointmentForm } from "../../../../components/forms/AppointmentForm";
+import { getPatient } from "../../../../lib/actions/patient.actions";
+import vitecarelogo from "../../../../assets/vclogo.png";
 
 const NewAppointment = () => {
   const [patient, setPatient] = useState({ $id: "", name: "" });

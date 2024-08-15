@@ -1,11 +1,13 @@
-import { useNavigate } from "react-router-dom";
-import logofull from "../../../../assets/vclogo.png";
-import registerImg from "../../../../assets/images/registerbg.png";
-import { useParams } from "react-router-dom";
-import { getPatient, getUser } from "../../../../lib/actions/patient.actions";
-import RegisterForm from "../../../../components/forms/RegisterForm";
 import { useEffect, useState } from "react";
 import * as Sentry from "@sentry/react";
+import { useNavigate, useParams } from "react-router-dom";
+
+import { getPatient, getUser } from "../../../../lib/actions/patient.actions";
+
+import RegisterForm from "../../../../components/forms/RegisterForm";
+
+import logofull from "../../../../assets/vclogo.png";
+import registerImg from "../../../../assets/images/registerbg.png";
 
 const Register = () => {
   const [user, setUser] = useState({ $id: "", phone: "", name: "", email: "" });
