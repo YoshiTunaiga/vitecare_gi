@@ -1,6 +1,6 @@
 import { defineConfig, loadEnv } from "vite";
 import react from "@vitejs/plugin-react";
-import { resolve } from "path";
+import path from "path";
 import { sentryVitePlugin } from "@sentry/vite-plugin";
 import { nodePolyfills } from "vite-plugin-node-polyfills";
 
@@ -11,26 +11,31 @@ export default ({ mode }: { mode: any }) => {
   return defineConfig({
     plugins: [
       react(),
-      nodePolyfills(),
+      nodePolyfills({
+        // Whether to polyfill `node:` protocol imports.
+        protocolImports: true,
+      }),
       sentryVitePlugin({
         org: "gi-diaz-solutions",
         project: "javascript-react",
         authToken: process.env.VITE_SENTRY_AUTH_TOKEN,
       }),
     ],
-    optimizeDeps: {
-      exclude: ["fs"],
-    },
+    // optimizeDeps: {
+    //   exclude: ["fs"],
+    // },
     build: {
+      sourcemap: true,
       rollupOptions: {
         input: "./index.html",
-        external: ["fs"],
+        // external: ["fs"],
       },
     },
     resolve: {
       alias: {
-        "@": resolve(__dirname, "./src"),
-        fs: resolve(__dirname, "fs-mock.js"),
+        "@": path.resolve(__dirname, "./src"),
+        "@assets": path.resolve(__dirname, "./src/assets"),
+        // fs: "node-stdlib-browser/helpers/fs.js",
       },
     },
   });
