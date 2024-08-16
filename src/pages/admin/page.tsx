@@ -44,7 +44,7 @@ const AdminPage = () => {
     return <>Loading...</>;
   } else {
     return (
-      <div className="text-white mx-auto flex max-w-7xl flex-col space-y-14">
+      <div className="bg-white text-dark-600 mx-auto flex max-w-7xl flex-col space-y-14">
         <header className="admin-header">
           <Link to="/" className="cursor-pointer">
             <img

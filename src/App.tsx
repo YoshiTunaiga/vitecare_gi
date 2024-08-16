@@ -40,7 +40,7 @@ const SentryRoutes = Sentry.withSentryReactRouterV6Routing(Routes);
 
 function App() {
   return (
-    <div className={cn("min-h-screen bg-dark-300 font-sans antialiased")}>
+    <div className={cn("min-h-screen font-sans antialiased")}>
       <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
         <SentryRoutes>
           <Route path="/" element={<Home />} />
