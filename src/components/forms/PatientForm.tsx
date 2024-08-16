@@ -43,7 +43,7 @@ const PatientForm = () => {
         phone: values.phone,
       };
 
-      const response: { newUser: any; isMember: boolean } | any =
+      const response: { newUser?: any; isMember?: boolean } | any =
         await createUser(user);
 
       if (!response.isMember) {

@@ -2,10 +2,12 @@ import PatientForm from "../components/forms/PatientForm";
 import vitecarelogo from "../assets/vclogo.png";
 import { useSearchParams } from "react-router-dom";
 import { PasskeyModal } from "../components/PasskeyModal";
+import { useState } from "react";
 
 const Home = () => {
   const [searchParams]: [URLSearchParams, Function] = useSearchParams();
-  const isAdmin = searchParams.get("admin");
+  // const isAdmin = searchParams.get("admin");
+  const [isAdmin, setIsAdmin] = useState(false);
 
   return (
     <div className="text-white flex h-screen max-h-screen bg-[url('./assets/images/providerbg.png')]">
@@ -27,9 +29,14 @@ const Home = () => {
             <p className="justify-items-end text-light-200 xl:text-left">
               © 2024 ViteCare
             </p>
-            <a href="/?admin=true" className="hover:text-dark-400 ">
+            {/* <a href="/?admin=true" className="hover:text-dark-400 ">
               Admin
-            </a>
+            </a> */}
+            <p
+              onClick={() => setIsAdmin(true)}
+              className="cursor-pointer justify-items-end text-light-200 xl:text-right">
+              Admin
+            </p>
           </div>
         </div>
       </section>
