@@ -14,6 +14,13 @@ import { createUser } from "../../lib/actions/patient.actions";
 import CustomFormField, { FormFieldType } from "../CustomFormField";
 import SubmitButton from "../SubmitButton";
 import { Form } from "../../components/ui/form";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "../ui/card";
 import emailIcon from "../../assets/icons/email.svg";
 import userIcon from "../../assets/icons/user.svg";
 
@@ -59,48 +66,51 @@ const PatientForm = () => {
   };
 
   return (
-    <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-        <section className="mb-12 space-y-4">
-          <h1 className="header">Hi There</h1>
-          <p className="text-light-200">Schedule your first appointment.</p>
-        </section>
+    <Card className="bg-white text-dark-200">
+      <CardHeader>
+        <CardTitle>Hi There</CardTitle>
+        <CardDescription>Schedule your first appointment.</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+            <CustomFormField
+              fieldType={FormFieldType.INPUT}
+              control={form.control}
+              name="name"
+              label="Full name"
+              placeholder="John Doe"
+              iconSrc={userIcon}
+              iconAlt="user"
+            />
 
-        <CustomFormField
-          fieldType={FormFieldType.INPUT}
-          control={form.control}
-          name="name"
-          label="Full name"
-          placeholder="John Doe"
-          iconSrc={userIcon}
-          iconAlt="user"
-        />
+            <CustomFormField
+              fieldType={FormFieldType.INPUT}
+              control={form.control}
+              name="email"
+              label="Email"
+              placeholder="johndoe@gmail.com"
+              iconSrc={emailIcon}
+              iconAlt="email"
+            />
 
-        <CustomFormField
-          fieldType={FormFieldType.INPUT}
-          control={form.control}
-          name="email"
-          label="Email"
-          placeholder="johndoe@gmail.com"
-          iconSrc={emailIcon}
-          iconAlt="email"
-        />
+            <CustomFormField
+              fieldType={FormFieldType.PHONE_INPUT}
+              control={form.control}
+              name="phone"
+              label="Phone number"
+              placeholder="(555) 123-4567"
+            />
 
-        <CustomFormField
-          fieldType={FormFieldType.PHONE_INPUT}
-          control={form.control}
-          name="phone"
-          label="Phone number"
-          placeholder="(555) 123-4567"
-        />
-
-        <SubmitButton
-          isLoading={isLoading}
-          className="bg-green-500 w-full hover:bg-green-700">
-          Get Started
-        </SubmitButton>
-      </form>
-    </Form>
+            <SubmitButton
+              isLoading={isLoading}
+              className="text-white bg-green-500 w-full hover:bg-green-700">
+              Get Started
+            </SubmitButton>
+          </form>
+        </Form>
+      </CardContent>
+    </Card>
   );
 };
 
