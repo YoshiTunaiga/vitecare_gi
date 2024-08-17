@@ -13,7 +13,7 @@ import { UserFormValidation } from "../../lib/validation";
 import { createUser } from "../../lib/actions/patient.actions";
 import CustomFormField, { FormFieldType } from "../CustomFormField";
 import SubmitButton from "../SubmitButton";
-import { Form } from "../../components/ui/form";
+import { Form } from "../ui/form";
 import {
   Card,
   CardContent,
@@ -21,14 +21,23 @@ import {
   CardHeader,
   CardTitle,
 } from "../ui/card";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
+
+//Assets
 import emailIcon from "../../assets/icons/email.svg";
 import userIcon from "../../assets/icons/user.svg";
 
 // Style
 import "react-phone-number-input/style.css";
+import { PasskeyModal } from "../PasskeyModal";
+import { InputOTP, InputOTPGroup, InputOTPSlot } from "../ui/input-otp";
+import AdminForm from "./AdminForm";
 
 const PatientForm = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const [passkey, setPasskey] = useState("");
+  const [error, setError] = useState("");
+
   const navigate = useNavigate();
 
   const form = useForm<z.infer<typeof UserFormValidation>>({

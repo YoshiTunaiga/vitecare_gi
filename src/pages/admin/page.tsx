@@ -32,6 +32,8 @@ const AdminPage = () => {
       setIsLoading(!isLoading);
     };
 
+    localStorage.setItem("accessKey", "");
+
     fetchAppointments();
 
     return () => {
