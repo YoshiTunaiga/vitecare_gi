@@ -15,7 +15,9 @@ const Home = () => {
     <div className="bg-auto bg-no-repeat h-screen bg-center bg-[url('./assets/images/providerbg.png')]">
       <section className="remove-scrollbar px-[2%] relative flex-1 overflow-y-auto my-auto bg-gradient-to-r from-dark-600 h-screen">
         <div className="sub-container max-w-[450px]">
-          <ViteCareLogo />
+          <div className="mb-5 w-[40%] h-[auto] items-center justify-content-center">
+            <ViteCareLogo />
+          </div>
           <Tabs defaultValue="patient" className="">
             <TabsList className="grid w-full grid-cols-2 bg-light-200">
               <TabsTrigger

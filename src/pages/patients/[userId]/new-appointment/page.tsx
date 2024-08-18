@@ -31,7 +31,9 @@ const NewAppointment = () => {
     <div className="text-white flex h-screen max-h-screen bg-[url('./assets/images/onboarding-img.png')]">
       <section className="remove-scrollbar px-[8%] my-auto bg-gradient-to-r from-green-700">
         <div className="sub-container max-w-[840px] flex-1 justify-between">
-          <ViteCareLogo />
+          <div className="mb-5 w-[40%] h-[auto] items-center justify-content-center">
+            <ViteCareLogo />
+          </div>
 
           <AppointmentForm
             type="create"

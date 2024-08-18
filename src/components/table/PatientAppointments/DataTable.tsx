@@ -9,7 +9,7 @@ import {
 } from "@tanstack/react-table";
 import { useEffect } from "react";
 
-import { Button } from "../../components/ui/button";
+import { Button } from "../../ui/button";
 import {
   Table,
   TableBody,
@@ -17,11 +17,11 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "../../components/ui/table";
-import { decryptKey } from "../../lib/utils";
+} from "../../ui/table";
+import { decryptKey } from "../../../lib/utils";
 import { redirect } from "react-router-dom";
-import arrowIcon from "../../assets/icons/arrow.svg";
-import { VITE_PUBLIC_ADMIN_PASSKEY } from "../../lib/appwrite.config";
+import arrowIcon from "../../../assets/icons/arrow.svg";
+import { VITE_PUBLIC_ADMIN_PASSKEY } from "../../../lib/appwrite.config";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
