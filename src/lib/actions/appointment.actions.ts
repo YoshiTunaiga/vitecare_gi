@@ -97,20 +97,20 @@ export const getRecentAppointmentList = async () => {
 };
 
 //  SEND SMS NOTIFICATION
-export const sendSMSNotification = async (userId: string, content: string) => {
-  try {
-    // https://appwrite.io/docs/references/1.5.x/server-nodejs/messaging#createSms
-    const message = await messaging.createSms(
-      ID.unique(),
-      content,
-      [],
-      [userId]
-    );
-    return parseStringify(message);
-  } catch (error) {
-    console.error("An error occurred while sending sms:", error);
-  }
-};
+// export const sendSMSNotification = async (userId: string, content: string) => {
+//   try {
+//     // https://appwrite.io/docs/references/1.5.x/server-nodejs/messaging#createSms
+//     const message = await messaging.createSms(
+//       ID.unique(),
+//       content,
+//       [],
+//       [userId]
+//     );
+//     return parseStringify(message);
+//   } catch (error) {
+//     console.error("An error occurred while sending sms:", error);
+//   }
+// };
 
 //  UPDATE APPOINTMENT
 export const updateAppointment = async ({
@@ -140,7 +140,7 @@ export const updateAppointment = async ({
             formatDateTime(appointment.schedule!).dateTime
           } is cancelled. Reason:  ${appointment.cancellationReason}`
     }.`;
-    await sendSMSNotification(userId, smsMessage);
+    // await sendSMSNotification(userId, smsMessage);
 
     // revalidatePath("/admin");
     return parseStringify(updatedAppointment);

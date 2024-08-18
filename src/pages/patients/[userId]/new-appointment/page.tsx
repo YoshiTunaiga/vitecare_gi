@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import * as Sentry from "@sentry/react";
 
+import ViteCareLogo from "../../../../components/ViteCareLogo";
 import { AppointmentForm } from "../../../../components/forms/AppointmentForm";
 import { getPatient } from "../../../../lib/actions/patient.actions";
-import vitecarelogo from "../../../../assets/vclogo.png";
 
 const NewAppointment = () => {
   const [patient, setPatient] = useState({ $id: "", name: "" });
@@ -31,15 +31,7 @@ const NewAppointment = () => {
     <div className="text-white flex h-screen max-h-screen bg-[url('./assets/images/onboarding-img.png')]">
       <section className="remove-scrollbar px-[8%] my-auto bg-gradient-to-r from-green-700">
         <div className="sub-container max-w-[840px] flex-1 justify-between">
-          <Link to="/" className="cursor-pointer">
-            <img
-              src={vitecarelogo}
-              height={1000}
-              width={1000}
-              alt="patient"
-              className="mb-12 h-10 w-fit"
-            />
-          </Link>
+          <ViteCareLogo />
 
           <AppointmentForm
             type="create"

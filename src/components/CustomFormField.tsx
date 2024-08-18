@@ -61,7 +61,7 @@ const RenderInput = ({ field, props }: { field: any; props: CustomProps }) => {
             <Input
               placeholder={props.placeholder}
               {...field}
-              className="shad-input border-0"
+              className="shad-input border-0 text-white"
             />
           </FormControl>
         </div>
@@ -87,7 +87,7 @@ const RenderInput = ({ field, props }: { field: any; props: CustomProps }) => {
             withCountryCallingCode
             value={field.value as E164Number | undefined}
             onChange={field.onChange}
-            className="input-phone"
+            className="input-phone text-white"
           />
         </FormControl>
       );

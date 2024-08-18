@@ -75,8 +75,8 @@ const PatientForm = () => {
   };
 
   return (
-    <Card className="bg-white text-dark-200">
-      <CardHeader>
+    <Card className="bg-white">
+      <CardHeader className="text-dark-200">
         <CardTitle>Hi There</CardTitle>
         <CardDescription>Schedule your first appointment.</CardDescription>
       </CardHeader>

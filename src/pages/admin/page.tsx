@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 
 import { getRecentAppointmentList } from "../../lib/actions/appointment.actions";
 
 // Components
 import StatCard from "../../components/StatCard";
+import ViteCareLogo from "../../components/ViteCareLogo";
 import { DataTable } from "../../components/table/DataTable";
 import { columns } from "../../components/table/columns";
 
 // Assets
-import vitecarelogo from "../../assets/vclogo.png";
 import calendarIcon from "../../assets/icons/appointments.svg";
 import pendingIcon from "../../assets/icons/pending.svg";
 import cancelledIcon from "../../assets/icons/cancelled.svg";
@@ -32,7 +31,7 @@ const AdminPage = () => {
       setIsLoading(!isLoading);
     };
 
-    localStorage.setItem("accessKey", "");
+    // localStorage.setItem("accessKey", "");
 
     fetchAppointments();
 
@@ -47,16 +46,8 @@ const AdminPage = () => {
   } else {
     return (
       <div className="bg-white text-dark-600 mx-auto flex max-w-7xl flex-col space-y-14">
-        <header className="admin-header">
-          <Link to="/" className="cursor-pointer">
-            <img
-              src={vitecarelogo}
-              width={1000}
-              height={1000}
-              alt="vitecarelogo"
-              className="mb-12 h-10 w-fit"
-            />
-          </Link>
+        <header className="admin-header justify-content-center">
+          <ViteCareLogo />
           <p className="text-16-semibold">Admin Dashboard</p>
         </header>
 

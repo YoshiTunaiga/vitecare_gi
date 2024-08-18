@@ -1,5 +1,4 @@
 import PatientForm from "../components/forms/PatientForm";
-import vitecarelogo from "../assets/vclogo.png";
 import { useState } from "react";
 import {
   Tabs,
@@ -8,22 +7,15 @@ import {
   TabsTrigger,
 } from "../components/ui/tabs";
 import AdminForm from "../components/forms/AdminForm";
+import { Link } from "react-router-dom";
+import ViteCareLogo from "../components/ViteCareLogo";
 
 const Home = () => {
-  const [isAdmin, setIsAdmin] = useState(false);
-
   return (
     <div className="bg-auto bg-no-repeat h-screen bg-center bg-[url('./assets/images/providerbg.png')]">
       <section className="remove-scrollbar px-[5%] my-auto relative overflow-y-auto flex-1 bg-gradient-to-r from-dark-600 h-screen">
         <div className="sub-container max-w-[450px]">
-          <img
-            src={vitecarelogo}
-            width={1000}
-            height={1000}
-            alt="vitecarelogo"
-            className="mb-12 h-10 w-fit"
-          />
-
+          <ViteCareLogo />
           <Tabs defaultValue="patient" className="w-[450px]">
             <TabsList className="grid w-full grid-cols-2 bg-light-200">
               <TabsTrigger
@@ -50,9 +42,12 @@ const Home = () => {
             <p className="justify-items-end text-light-200 xl:text-left">
               © 2024 ViteCare
             </p>
-            <p className="justify-items-end text-light-200 xl:text-right">
+            <Link
+              to="https://gidiaz.com"
+              target="_blank"
+              className="justify-items-end text-light-200 xl:text-right transition delay-150 duration-300 ease-in-out">
               Gi Diaz Solutions
-            </p>
+            </Link>
           </div>
         </div>
       </section>
