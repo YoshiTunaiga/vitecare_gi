@@ -13,10 +13,10 @@ import ViteCareLogo from "../components/ViteCareLogo";
 const Home = () => {
   return (
     <div className="bg-auto bg-no-repeat h-screen bg-center bg-[url('./assets/images/providerbg.png')]">
-      <section className="remove-scrollbar px-[5%] my-auto relative overflow-y-auto flex-1 bg-gradient-to-r from-dark-600 h-screen">
+      <section className="remove-scrollbar px-[2%] relative flex-1 overflow-y-auto my-auto bg-gradient-to-r from-dark-600 h-screen">
         <div className="sub-container max-w-[450px]">
           <ViteCareLogo />
-          <Tabs defaultValue="patient" className="w-[450px]">
+          <Tabs defaultValue="patient" className="">
             <TabsList className="grid w-full grid-cols-2 bg-light-200">
               <TabsTrigger
                 value="patient"
