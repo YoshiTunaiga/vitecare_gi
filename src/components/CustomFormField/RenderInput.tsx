@@ -1,49 +1,30 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+import React from "react";
 import { E164Number } from "libphonenumber-js/core";
 import ReactDatePicker from "react-datepicker";
-import { Control, useFormContext } from "react-hook-form";
 import PhoneInput from "react-phone-number-input";
-
-import { Checkbox } from "./ui/checkbox";
+import { CustomProps, FormFieldType } from "./CustomFormField";
+// Components
+import { Checkbox } from "../ui/checkbox";
+import { FormControl } from "../ui/form";
+import { Input } from "../ui/input";
 import {
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "./ui/form";
-import { Input } from "./ui/input";
-import { Select, SelectContent, SelectTrigger, SelectValue } from "./ui/select";
-import { Textarea } from "./ui/textarea";
-import { useEffect } from "react";
+  Select,
+  SelectContent,
+  SelectTrigger,
+  SelectValue,
+} from "../ui/select";
+import { Textarea } from "../ui/textarea";
 
-export enum FormFieldType {
-  INPUT = "input",
-  TEXTAREA = "textarea",
-  PHONE_INPUT = "phoneInput",
-  CHECKBOX = "checkbox",
-  DATE_PICKER = "datePicker",
-  SELECT = "select",
-  SKELETON = "skeleton",
-}
+// Assets
+import calendarIcon from "../../assets/icons/calendar.svg";
 
-interface CustomProps {
-  control: Control<any>;
-  name: string;
-  label?: string;
-  placeholder?: string;
-  iconSrc?: string;
-  iconAlt?: string;
-  disabled?: boolean;
-  dateFormat?: string;
-  showTimeSelect?: boolean;
-  children?: React.ReactNode;
-  renderSkeleton?: (field: any) => React.ReactNode;
-  fieldType: FormFieldType;
-  autofill?: string;
-}
-
-const RenderInput = ({ field, props }: { field: any; props: CustomProps }) => {
+export const RenderInput = ({
+  field,
+  props,
+}: {
+  field: any;
+  props: CustomProps;
+}) => {
   switch (props.fieldType) {
     case FormFieldType.INPUT:
       return (
@@ -109,13 +90,13 @@ const RenderInput = ({ field, props }: { field: any; props: CustomProps }) => {
     case FormFieldType.DATE_PICKER:
       return (
         <div className="flex rounded-md border border-dark-500 bg-dark-400">
-          {/* <Image
-            src="/assets/icons/calendar.svg"
+          <img
+            src={calendarIcon}
             height={24}
             width={24}
             alt="user"
             className="ml-2"
-          /> */}
+          />
           <FormControl>
             <ReactDatePicker
               showTimeSelect={props.showTimeSelect ?? false}
@@ -123,7 +104,7 @@ const RenderInput = ({ field, props }: { field: any; props: CustomProps }) => {
               onChange={(date: Date | null) => field.onChange(date)}
               timeInputLabel="Time:"
               dateFormat={props.dateFormat ?? "MM/dd/yyyy"}
-              wrapperClassName="date-picker"
+              wrapperClassName="date-picker text-white"
             />
           </FormControl>
         </div>
@@ -133,7 +114,7 @@ const RenderInput = ({ field, props }: { field: any; props: CustomProps }) => {
         <FormControl>
           <Select onValueChange={field.onChange} defaultValue={field.value}>
             <FormControl>
-              <SelectTrigger className="shad-select-trigger">
+              <SelectTrigger className="shad-select-trigger text-white">
                 <SelectValue placeholder={props.placeholder} />
               </SelectTrigger>
             </FormControl>
@@ -149,31 +130,3 @@ const RenderInput = ({ field, props }: { field: any; props: CustomProps }) => {
       return null;
   }
 };
-
-const CustomFormField = (props: CustomProps) => {
-  const { control, name, label, autofill } = props;
-  const { setValue } = useFormContext();
-
-  useEffect(() => {
-    if (autofill) setValue(name, autofill);
-  }, [autofill]);
-
-  return (
-    <FormField
-      control={control}
-      name={name}
-      render={({ field }) => (
-        <FormItem className="flex-1">
-          {props.fieldType !== FormFieldType.CHECKBOX && label && (
-            <FormLabel>{label}</FormLabel>
-          )}
-          <RenderInput field={field} props={props} />
-
-          <FormMessage className="shad-error" />
-        </FormItem>
-      )}
-    />
-  );
-};
-
-export default CustomFormField;

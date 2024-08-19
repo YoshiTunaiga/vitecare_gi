@@ -11,7 +11,9 @@ import { useNavigate } from "react-router-dom";
 // Components
 import { UserFormValidation } from "../../lib/validation";
 import { createUser } from "../../lib/actions/patient.actions";
-import CustomFormField, { FormFieldType } from "../CustomFormField";
+import CustomFormField, {
+  FormFieldType,
+} from "../CustomFormField/CustomFormField";
 import SubmitButton from "../SubmitButton";
 import { Form } from "../ui/form";
 import {

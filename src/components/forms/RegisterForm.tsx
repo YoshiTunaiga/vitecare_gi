@@ -17,7 +17,9 @@ import {
 } from "../../constants";
 
 // Components
-import CustomFormField, { FormFieldType } from "../CustomFormField";
+import CustomFormField, {
+  FormFieldType,
+} from "../CustomFormField/CustomFormField";
 import { FileUploader } from "../FileUploader";
 import SubmitButton from "../SubmitButton";
 import { FormControl } from "../../components/ui/form";
@@ -133,7 +135,7 @@ const RegisterForm = () => {
             className="flex-1 space-y-12">
             <section className="space-y-4">
               <h1 className="header">Welcome 👋</h1>
-              <p className="text-dark-700">Let us know more about yourself.</p>
+              <p className="text-dark-200">Let us know more about yourself.</p>
             </section>
             <section className="space-y-6">
               <div className="mb-9 space-y-1">
@@ -199,7 +201,9 @@ const RegisterForm = () => {
                         {GenderOptions.map((option, i) => (
                           <div key={option + i} className="radio-group">
                             <RadioGroupItem value={option} id={option} />
-                            <Label htmlFor={option} className="cursor-pointer">
+                            <Label
+                              htmlFor={option}
+                              className="text-white cursor-pointer">
                               {option}
                             </Label>
                           </div>
