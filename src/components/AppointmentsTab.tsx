@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from "react";
+import * as Sentry from "@sentry/react";
+
+// Components
 import {
   Tabs,
   TabsContent,
@@ -28,7 +31,7 @@ const AppointmentsTab = () => {
 
   useEffect(() => {
     const fetchAppointments = async () => {
-      const apptsReturned = await getRecentAppointmentList();
+      const apptsReturned = await getRecentAppointmentList("");
       setAppointments(apptsReturned);
       setIsLoading(!isLoading);
     };
@@ -40,6 +43,9 @@ const AppointmentsTab = () => {
     };
     // TODO: appointments should refresh on submit update not on refresh page
   }, []);
+
+  // Sentry Metricts for page usage
+  Sentry.metrics.set("user_admin_view", appointments.scheduledCount);
 
   return (
     <TabsContent value="appointments" className="space-y-4">
@@ -74,7 +80,7 @@ const AppointmentsTab = () => {
         />
       </div>
       <div className="data-table">
-        <DataTable columns={columns} data={appointments.documents} />
+        <DataTable columns={columns} data={appointments?.documents} />
       </div>
     </TabsContent>
   );

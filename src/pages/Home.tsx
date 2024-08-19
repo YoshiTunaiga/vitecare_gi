@@ -1,5 +1,4 @@
 import PatientForm from "../components/forms/PatientForm";
-import { useState } from "react";
 import {
   Tabs,
   TabsContent,

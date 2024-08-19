@@ -31,13 +31,19 @@ export const createAppointment = async (
 };
 
 //  GET RECENT APPOINTMENTS
-export const getRecentAppointmentList = async () => {
+export const getRecentAppointmentList = async (userId: string) => {
   try {
-    const appointments = await databases.listDocuments(
-      VITE_DATABASE_ID!,
-      VITE_APPOINTMENT_COLLECTION_ID!,
-      [Query.orderDesc("$createdAt")]
-    );
+    const appointments = userId
+      ? await databases.listDocuments(
+          VITE_DATABASE_ID!,
+          VITE_APPOINTMENT_COLLECTION_ID!,
+          [Query.equal("userId", [userId])]
+        )
+      : await databases.listDocuments(
+          VITE_DATABASE_ID!,
+          VITE_APPOINTMENT_COLLECTION_ID!,
+          [Query.orderDesc("$createdAt")]
+        );
 
     const scheduledAppointments = (
       appointments.documents as Appointment[]
@@ -131,15 +137,15 @@ export const updateAppointment = async ({
 
     if (!updatedAppointment) throw Error;
 
-    const smsMessage = `Greetings from ViteCare. ${
-      type === "schedule"
-        ? `Your appointment is confirmed for ${
-            formatDateTime(appointment.schedule!).dateTime
-          } with Dr. ${appointment.primaryPhysician}`
-        : `We regret to inform that your appointment for ${
-            formatDateTime(appointment.schedule!).dateTime
-          } is cancelled. Reason:  ${appointment.cancellationReason}`
-    }.`;
+    // const smsMessage = `Greetings from ViteCare. ${
+    //   type === "schedule"
+    //     ? `Your appointment is confirmed for ${
+    //         formatDateTime(appointment.schedule!).dateTime
+    //       } with Dr. ${appointment.primaryPhysician}`
+    //     : `We regret to inform that your appointment for ${
+    //         formatDateTime(appointment.schedule!).dateTime
+    //       } is cancelled. Reason:  ${appointment.cancellationReason}`
+    // }.`;
     // await sendSMSNotification(userId, smsMessage);
 
     // revalidatePath("/admin");

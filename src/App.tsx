@@ -1,16 +1,4 @@
-// Pages
-import Home from "./pages/Home";
-import Register from "./pages/patients/[userId]/register/page";
-import NewAppointment from "./pages/patients/[userId]/new-appointment/page";
-import AdminPage from "./pages/admin/page";
-import Page from "./pages/sentry-example-page/page";
-import RequestSuccess from "./pages/patients/[userId]/new-appointment/success/page";
-
-// Styles
-import { ThemeProvider } from "./components/theme-provider";
-import { cn } from "./lib/utils";
-import "./App.css";
-
+import React from "react";
 import {
   Routes,
   Route,
@@ -20,7 +8,20 @@ import {
   matchRoutes,
 } from "react-router-dom";
 import * as Sentry from "@sentry/react";
-import React from "react";
+
+// Pages
+import Home from "./pages/Home";
+import Register from "./pages/patients/[userId]/register/page";
+import NewAppointment from "./pages/patients/[userId]/new-appointment/page";
+import AdminPage from "./pages/admin/page";
+import Page from "./pages/sentry-example-page/page";
+import RequestSuccess from "./pages/patients/[userId]/new-appointment/success/page";
+import MyAppointments from "./pages/patients/[userId]/my-appointments/page";
+
+// Styles
+import { ThemeProvider } from "./components/theme-provider";
+import { cn } from "./lib/utils";
+import "./App.css";
 
 Sentry.init({
   dsn: "https://c8db9dcca8e11c0917a661648198a1ec@o4507772423045120.ingest.us.sentry.io/4507772428550144",
@@ -48,6 +49,10 @@ function App() {
           <Route
             path="/patients/:userId/new-appointment"
             element={<NewAppointment />}
+          />
+          <Route
+            path="/patients/:userId/my-appointments"
+            element={<MyAppointments />}
           />
           <Route
             path="/patients/:userId/new-appointment/success"

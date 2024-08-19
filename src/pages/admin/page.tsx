@@ -15,7 +15,7 @@ const adminTabs = [
 const AdminPage = () => {
   return (
     <div className="bg-white text-dark-600 mx-auto flex max-w-7xl flex-col space-y-14">
-      <header className="admin-header justify-content-center">
+      <header className="admin-header justify-content-center mt-5">
         <ViteCareLogo />
         <p className="text-16-semibold">Admin Dashboard</p>
       </header>
