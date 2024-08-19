@@ -23,7 +23,6 @@ import {
   CardHeader,
   CardTitle,
 } from "../ui/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
 
 //Assets
 import emailIcon from "../../assets/icons/email.svg";
@@ -31,14 +30,9 @@ import userIcon from "../../assets/icons/user.svg";
 
 // Style
 import "react-phone-number-input/style.css";
-import { PasskeyModal } from "../PasskeyModal";
-import { InputOTP, InputOTPGroup, InputOTPSlot } from "../ui/input-otp";
-import AdminForm from "./AdminForm";
 
 const PatientForm = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const [passkey, setPasskey] = useState("");
-  const [error, setError] = useState("");
 
   const navigate = useNavigate();
 

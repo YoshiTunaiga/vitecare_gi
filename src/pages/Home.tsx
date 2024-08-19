@@ -10,6 +10,10 @@ import AdminForm from "../components/forms/AdminForm";
 import { Link } from "react-router-dom";
 import ViteCareLogo from "../components/ViteCareLogo";
 
+const homeTabs = [
+  { name: "Patient", value: "patient", form: <PatientForm /> },
+  { name: "Admin", value: "admin", form: <AdminForm /> },
+];
 const Home = () => {
   return (
     <div className="bg-auto bg-no-repeat h-screen bg-center bg-[url('./assets/images/providerbg.png')]">
@@ -20,27 +24,24 @@ const Home = () => {
           </div>
           <Tabs defaultValue="patient" className="">
             <TabsList className="grid w-full grid-cols-2 bg-light-200">
-              <TabsTrigger
-                value="patient"
-                className="data-[state=active]:bg-white">
-                Patient
-              </TabsTrigger>
-              <TabsTrigger
-                value="admin"
-                className="data-[state=active]:bg-white">
-                Admin
-              </TabsTrigger>
+              {homeTabs.map((tabTrigger) => (
+                <TabsTrigger
+                  key={tabTrigger.value}
+                  value={tabTrigger.value}
+                  className="data-[state=active]:bg-white">
+                  {tabTrigger.name}
+                </TabsTrigger>
+              ))}
             </TabsList>
-            <TabsContent value="patient" className="space-y-8">
-              <PatientForm />
-            </TabsContent>
-            <TabsContent value="admin" className="overflow-hidden">
-              <AdminForm />
-            </TabsContent>
+            {homeTabs.map((tabContent) => (
+              <TabsContent value={tabContent.value} className="space-y-8">
+                {tabContent.form}
+              </TabsContent>
+            ))}
           </Tabs>
 
           {/* ========= FOOTER =========== */}
-          <div className="text-14-regular mt-5 flex justify-between">
+          <div className="text-14-regular my-5 flex justify-between">
             <p className="justify-items-end text-light-200 xl:text-left">
               © 2024 ViteCare
             </p>
