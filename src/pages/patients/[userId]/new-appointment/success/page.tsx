@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { Link, useParams, useSearchParams } from "react-router-dom";
-import * as Sentry from "@sentry/react";
 
 import { getUser } from "../../../../../lib/actions/patient.actions";
 import { getAppointment } from "../../../../../lib/actions/appointment.actions";
@@ -19,9 +18,6 @@ const RequestSuccess = () => {
   const { userId } = useParams();
   const [doctor, setDoctor] = useState({ image: "", name: "" });
   const [appointment, setAppointment] = useState({ schedule: "" });
-
-  // Sentry Metricts for page usage
-  Sentry.metrics.set("user_view_appointment-success", user.name);
 
   useEffect(() => {
     const fetchDoctor = async (userId: string) => {

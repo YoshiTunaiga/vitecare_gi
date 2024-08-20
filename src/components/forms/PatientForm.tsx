@@ -7,7 +7,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import * as Sentry from "@sentry/react";
 
 // Components
 import { UserFormValidation } from "../../lib/validation";
@@ -58,9 +57,6 @@ const PatientForm = () => {
 
       const response: { newUser?: any; isMember?: boolean } | any =
         await createUser(user);
-
-      // Sentry Metricts for page usage
-      Sentry.metrics.set("user_view_patient_form", response.newUser.name);
 
       if (!response.isMember) {
         navigate(`/patients/${response.newUser.$id}/register`);

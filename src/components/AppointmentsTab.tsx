@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import * as Sentry from "@sentry/react";
 
 // Components
 import {
@@ -43,9 +42,6 @@ const AppointmentsTab = () => {
     };
     // TODO: appointments should refresh on submit update not on refresh page
   }, []);
-
-  // Sentry Metricts for page usage
-  Sentry.metrics.set("user_admin_view", appointments.scheduledCount);
 
   return (
     <TabsContent value="appointments" className="space-y-4">

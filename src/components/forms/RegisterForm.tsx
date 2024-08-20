@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { z } from "zod";
 import { useNavigate, useParams } from "react-router-dom";
-import * as Sentry from "@sentry/react";
 
 import { getUser, registerPatient } from "../../lib/actions/patient.actions";
 import { PatientFormValidation } from "../../lib/validation";
@@ -45,9 +44,6 @@ const RegisterForm = () => {
     email: "",
   });
   const { userId } = useParams();
-
-  // Sentry Metricts for page usage
-  Sentry.metrics.set("user_view_register", user.name);
 
   useEffect(() => {
     setIsLoading(true);

@@ -93,13 +93,13 @@ Open [http://localhost:5173](http://localhost:5173) in your browser to view the 
 - ✅ **Confirm/Schedule Appointment from Admin Side:** Admins can confirm and set appointment times to ensure they are properly scheduled.
 - ✅ **Cancel Appointment from Admin Side:** Administrators have the ability to cancel any appointment as needed.
 - ✅ **Complete Responsiveness:** The application works seamlessly on all device types and screen sizes.
-- ✅ **Manage and Track Application Performance Using Sentry:** The application uses Sentry to monitor and track its performance and detect any errors.
 
 # 🚀 <a name="next-steps">Next Steps</a>
 
 - [ ] **Send SMS on Appointment Confirmation:** Patients receive SMS notifications to confirm their appointment details.
 - [ ] **File Upload Using Appwrite Storage:** Users can upload and store files securely within the app using Appwrite storage services.
-
+- [ ] **Manage and Track Application Performance Using Sentry:** The application uses Sentry to monitor and track its performance and detect any errors.
+ 
 # ➕ <a name="more">More</a>
 
 ## React + TypeScript + Vite

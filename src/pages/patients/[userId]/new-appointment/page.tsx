@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import * as Sentry from "@sentry/react";
 
 import ViteCareLogo from "../../../../components/ViteCareLogo";
 import { AppointmentForm } from "../../../../components/forms/AppointmentForm";
@@ -11,9 +10,6 @@ const NewAppointment = () => {
   const [patient, setPatient] = useState({ $id: "", name: "" });
   const { userId } = useParams();
   const router = useNavigate();
-
-  // Sentry Metricts for page usage
-  Sentry.metrics.set("user_view_new-appointment", patient.name);
 
   useEffect(() => {
     const fetchPatient = async (userId: string) => {
