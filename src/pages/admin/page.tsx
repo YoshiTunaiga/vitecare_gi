@@ -12,7 +12,7 @@ const adminTabs = [
   // { value: "notifications", label: "Notifications" },
 ];
 
-const AdminPage = () => {
+const AdminPage = (props: any) => {
   return (
     <div className="bg-white text-dark-600 mx-auto flex max-w-7xl flex-col space-y-14">
       <header className="admin-header justify-content-center mt-5">
@@ -27,7 +27,7 @@ const AdminPage = () => {
             Start the day with managing new appointments
           </p>
         </section>
-        <section className="w-full space-y-4">
+        {/* <section className="w-full space-y-4">
           <Tabs defaultValue="appointments">
             <TabsList className="bg-light-200">
               {adminTabs.map((tab) => (
@@ -42,7 +42,7 @@ const AdminPage = () => {
             <AppointmentsTab />
             <ProvidersList />
           </Tabs>
-        </section>
+        </section> */}
       </main>
     </div>
   );

@@ -1,15 +1,18 @@
 import { useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import {
+  //  Link, useNavigate,
+  useParams,
+} from "react-router-dom";
 
 import ViteCareLogo from "../../../../components/ViteCareLogo";
 import { AppointmentForm } from "../../../../components/forms/AppointmentForm";
 import { getPatient } from "../../../../lib/actions/patient.actions";
-import { Button } from "../../../../components/ui/button";
+// import { Button } from "../../../../components/ui/button";
 
 const NewAppointment = () => {
   const [patient, setPatient] = useState({ $id: "", name: "" });
   const { userId } = useParams();
-  const router = useNavigate();
+  // const router = useNavigate();
 
   useEffect(() => {
     const fetchPatient = async (userId: string) => {
@@ -25,9 +28,9 @@ const NewAppointment = () => {
     }
   }, []);
 
-  const navigateToMyAppointments = () => {
-    router(`/patients/${userId}/my-appointments`);
-  };
+  // const navigateToMyAppointments = () => {
+  //   router(`/patients/${userId}/my-appointments`);
+  // };
 
   return (
     <div className="text-white flex h-screen max-h-screen bg-auto bg-no-repeat bg-right bg-[url('./assets/images/onboarding-img.png')]">

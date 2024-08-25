@@ -49,18 +49,18 @@ Create a new file named `.env.local` in the root of your project and add the fol
 
 ```env
 #APPWRITE
-VITE_PROJECT_ID=
-VITE_API_KEY=
-VITE_DATABASE_ID=
-VITE_PATIENT_COLLECTION_ID=
-VITE_DOCTOR_COLLECTION_ID=
-VITE_APPOINTMENT_COLLECTION_ID=
-VITE_PUBLIC_BUCKET_ID=
-VITE_PUBLIC_ENDPOINT=https://cloud.appwrite.io/v1
+PROJECT_ID=
+API_KEY=
+DATABASE_ID=
+PATIENT_COLLECTION_ID=
+DOCTOR_COLLECTION_ID=
+APPOINTMENT_COLLECTION_ID=
+PUBLIC_BUCKET_ID=
+PUBLIC_ENDPOINT=https://cloud.appwrite.io/v1
 
-VITE_PUBLIC_ADMIN_PASSKEY=111111
+PUBLIC_ADMIN_PASSKEY=111111
 
-VITE_SENTRY_AUTH_TOKEN=
+SENTRY_AUTH_TOKEN=
 ```
 
 Replace the placeholder values with your actual Appwrite credentials. You can obtain these credentials by signing up on the [Appwrite website](https://appwrite.io/).

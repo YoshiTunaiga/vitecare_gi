@@ -8,8 +8,7 @@ import {
 } from "../ui/card";
 import { InputOTP, InputOTPGroup, InputOTPSlot } from "../ui/input-otp";
 import { useLocation, useNavigate } from "react-router-dom";
-import { VITE_PUBLIC_ADMIN_PASSKEY } from "../../lib/appwrite.config";
-import { decryptKey, encryptKey } from "../../lib/utils";
+import { encryptKey } from "../../lib/utils";
 import { Button } from "../ui/button";
 
 const AdminForm = () => {
@@ -23,21 +22,47 @@ const AdminForm = () => {
       ? window.localStorage.getItem("accessKey")
       : null;
 
+  // useEffect(() => {
+  //   const accessKey = encryptedKey && decryptKey(encryptedKey);
+
+  //   if (path)
+  //     if (accessKey === process.env.PUBLIC_ADMIN_PASSKEY!.toString()) {
+  //       setOpen(false);
+  //       router.push("/admin");
+  //     } else {
+  //       setOpen(true);
+  //     }
+  // }, [encryptedKey]);
+
+  // const closeModal = () => {
+  //   setOpen(false);
+  //   router.push("/");
+  // };
   const validatePasskey = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
-    event.preventDefault();
+    const encryptedKey = encryptKey(passkey);
+    fetch(`/api/${encryptedKey}`)
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.user) {
+          router("/admin");
+        }
+      })
+      .catch((error) => console.error(`ERROR ON PORT 8080`));
 
-    if (passkey === VITE_PUBLIC_ADMIN_PASSKEY) {
-      const encryptedKey = encryptKey(passkey);
+    // event.preventDefault();
 
-      localStorage.setItem("accessKey", encryptedKey);
+    // if (passkey === PUBLIC_ADMIN_PASSKEY) {
+    //   const encryptedKey = encryptKey(passkey);
 
-      router("/admin");
-    } else {
-      setPasskey("");
-      setError("Invalid passkey. Please try again.");
-    }
+    //   localStorage.setItem("accessKey", encryptedKey);
+
+    //   router("/admin");
+    // } else {
+    //   setPasskey("");
+    //   setError("Invalid passkey. Please try again.");
+    // }
   };
 
   return (

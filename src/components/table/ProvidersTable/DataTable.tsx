@@ -21,7 +21,7 @@ import {
 import { decryptKey } from "../../../lib/utils";
 import { redirect } from "react-router-dom";
 import arrowIcon from "../../../assets/icons/arrow.svg";
-import { VITE_PUBLIC_ADMIN_PASSKEY } from "../../../lib/appwrite.config";
+import { PUBLIC_ADMIN_PASSKEY } from "../../../lib/appwrite.config";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -40,7 +40,7 @@ export function DataTable<TData, TValue>({
   useEffect(() => {
     const accessKey = encryptedKey && decryptKey(encryptedKey);
 
-    if (accessKey !== VITE_PUBLIC_ADMIN_PASSKEY!.toString()) {
+    if (accessKey !== PUBLIC_ADMIN_PASSKEY!.toString()) {
       redirect("/");
     }
   }, [encryptedKey]);

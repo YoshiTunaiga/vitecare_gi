@@ -13,6 +13,7 @@ const homeTabs = [
   { name: "Patient", value: "patient", form: <PatientForm /> },
   { name: "Admin", value: "admin", form: <AdminForm /> },
 ];
+
 const Home = () => {
   return (
     <div className="bg-auto bg-no-repeat h-screen bg-center bg-[url('./assets/images/providerbg.png')]">
@@ -33,7 +34,10 @@ const Home = () => {
               ))}
             </TabsList>
             {homeTabs.map((tabContent) => (
-              <TabsContent value={tabContent.value} className="space-y-8">
+              <TabsContent
+                key={tabContent.value}
+                value={tabContent.value}
+                className="space-y-8">
                 {tabContent.form}
               </TabsContent>
             ))}

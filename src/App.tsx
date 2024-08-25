@@ -33,7 +33,7 @@ function App() {
             path="/patients/:userId/new-appointment/success"
             element={<RequestSuccess />}
           />
-          <Route path="/admin" element={<AdminPage />} />
+          <Route path="/admin/" element={<AdminPage />} />
         </Routes>
       </ThemeProvider>
     </div>

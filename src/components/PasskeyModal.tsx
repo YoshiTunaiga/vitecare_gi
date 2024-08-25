@@ -19,7 +19,7 @@ import {
 } from "../components/ui/input-otp";
 import { decryptKey, encryptKey } from "../lib/utils";
 import closeIcon from "../assets/icons/close.svg";
-import { VITE_PUBLIC_ADMIN_PASSKEY } from "../lib/appwrite.config";
+import { PUBLIC_ADMIN_PASSKEY } from "../lib/appwrite.config";
 
 export const PasskeyModal = () => {
   const router = useNavigate();
@@ -37,7 +37,7 @@ export const PasskeyModal = () => {
     const accessKey = encryptedKey && decryptKey(encryptedKey);
 
     if (pathname)
-      if (accessKey === VITE_PUBLIC_ADMIN_PASSKEY!.toString()) {
+      if (accessKey === PUBLIC_ADMIN_PASSKEY!.toString()) {
         setOpen(false);
         router("/admin");
       } else {
@@ -55,7 +55,7 @@ export const PasskeyModal = () => {
   ) => {
     event.preventDefault();
 
-    if (passkey === VITE_PUBLIC_ADMIN_PASSKEY) {
+    if (passkey === PUBLIC_ADMIN_PASSKEY) {
       const encryptedKey = encryptKey(passkey);
 
       localStorage.setItem("accessKey", encryptedKey);
