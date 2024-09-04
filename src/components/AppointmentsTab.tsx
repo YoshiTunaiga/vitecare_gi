@@ -15,7 +15,8 @@ import { DataTable } from "./table/PatientAppointments/DataTable";
 import calendarIcon from "../assets/icons/appointments.svg";
 import pendingIcon from "../assets/icons/pending.svg";
 import cancelledIcon from "../assets/icons/cancelled.svg";
-import { getRecentAppointmentList } from "../lib/actions/appointment.actions";
+// import { getRecentAppointmentList } from "../lib/actions/appointment.actions";
+import { useLocation, redirect } from "react-router-dom";
 
 const initialCounts = {
   scheduledCount: 0,
@@ -27,20 +28,38 @@ const initialCounts = {
 const AppointmentsTab = () => {
   const [appointments, setAppointments] = useState(initialCounts);
   const [isLoading, setIsLoading] = useState(true);
+  const location = useLocation();
+
+  const encryptedKey =
+    typeof window !== "undefined"
+      ? window.localStorage.getItem("accessKey")
+      : null;
 
   useEffect(() => {
-    const fetchAppointments = async () => {
-      const apptsReturned = await getRecentAppointmentList("");
-      setAppointments(apptsReturned);
-      setIsLoading(!isLoading);
+    // const accessKey = encryptedKey && decryptKey(encryptedKey);
+    fetch(`/api/${encryptedKey}`)
+      .then((res) => res.json())
+      .then((data) => {
+        if (!data.user) {
+          redirect("/");
+        }
+      })
+      .catch((error) => console.error(`ERROR ON PORT 8080`));
+  }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetch("http://localhost:8000/admin");
+      const data = await response.json();
+      setAppointments(data.apptsReturned);
     };
 
-    fetchAppointments();
-
+    if (location.state.userInfo) {
+      fetchData();
+    }
     return () => {
       setAppointments(initialCounts);
     };
-    // TODO: appointments should refresh on submit update not on refresh page
   }, []);
 
   return (
@@ -76,7 +95,7 @@ const AppointmentsTab = () => {
         />
       </div>
       <div className="data-table">
-        <DataTable columns={columns} data={appointments?.documents} />
+        <DataTable columns={columns} data={appointments?.documents ?? []} />
       </div>
     </TabsContent>
   );

@@ -18,10 +18,10 @@ import {
   TableHeader,
   TableRow,
 } from "../../ui/table";
-import { decryptKey } from "../../../lib/utils";
+// import { decryptKey } from "../../../lib/utils";
 import { redirect } from "react-router-dom";
 import arrowIcon from "../../../assets/icons/arrow.svg";
-import { PUBLIC_ADMIN_PASSKEY } from "../../../lib/appwrite.config";
+// import { PUBLIC_ADMIN_PASSKEY } from "../../../lib/appwrite.config";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -32,18 +32,22 @@ export function DataTable<TData, TValue>({
   columns,
   data,
 }: DataTableProps<TData, TValue>) {
-  const encryptedKey =
-    typeof window !== "undefined"
-      ? window.localStorage.getItem("accessKey")
-      : null;
+  // const encryptedKey =
+  //   typeof window !== "undefined"
+  //     ? window.localStorage.getItem("accessKey")
+  //     : null;
 
-  useEffect(() => {
-    const accessKey = encryptedKey && decryptKey(encryptedKey);
-
-    if (accessKey !== PUBLIC_ADMIN_PASSKEY!.toString()) {
-      redirect("/");
-    }
-  }, [encryptedKey]);
+  // useEffect(() => {
+  //   // const accessKey = encryptedKey && decryptKey(encryptedKey);
+  //   fetch(`/api/${encryptedKey}`)
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       if (!data.user) {
+  //         redirect("/");
+  //       }
+  //     })
+  //     .catch((error) => console.error(`ERROR ON PORT 8080`));
+  // }, []);
 
   const table = useReactTable({
     data,

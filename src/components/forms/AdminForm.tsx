@@ -46,7 +46,11 @@ const AdminForm = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data.user) {
-          router("/admin");
+          router("/admin", {
+            state: {
+              userInfo: data.user,
+            },
+          });
         }
       })
       .catch((error) => console.error(`ERROR ON PORT 8080`));

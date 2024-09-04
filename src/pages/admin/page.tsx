@@ -1,15 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 // Components
 import ViteCareLogo from "../../components/ViteCareLogo";
 import AppointmentsTab from "../../components/AppointmentsTab";
 import ProvidersList from "../../components/ProvidersList";
 import { Tabs, TabsList, TabsTrigger } from "../../components/ui/tabs";
+import { useLocation } from "react-router-dom";
 
 const adminTabs = [
   { value: "appointments", label: "Appointments" },
   { value: "providers", label: "Providers" },
-  // { value: "notifications", label: "Notifications" },
+  // TODO: { value: "notifications", label: "Notifications" },
 ];
 
 const AdminPage = (props: any) => {
@@ -27,7 +28,7 @@ const AdminPage = (props: any) => {
             Start the day with managing new appointments
           </p>
         </section>
-        {/* <section className="w-full space-y-4">
+        <section className="w-full space-y-4">
           <Tabs defaultValue="appointments">
             <TabsList className="bg-light-200">
               {adminTabs.map((tab) => (
@@ -40,9 +41,9 @@ const AdminPage = (props: any) => {
               ))}
             </TabsList>
             <AppointmentsTab />
-            <ProvidersList />
+            {/* TODO: <ProvidersList /> */}
           </Tabs>
-        </section> */}
+        </section>
       </main>
     </div>
   );
