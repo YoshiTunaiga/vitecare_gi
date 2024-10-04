@@ -29,10 +29,10 @@ const StatCard = ({ count = 0, label, icon, type }: StatCardProps) => {
           alt="appointments"
           className="size-8 w-fit"
         />
-        <CardTitle className="text-32-bold text-white">{count}</CardTitle>
+        <CardTitle className="text-32-bold">{count}</CardTitle>
       </CardHeader>
       <CardContent>
-        <div className="text-2xl font-bold text-white">{label}</div>
+        <div className="text-2xl font-bold">{label}</div>
       </CardContent>
     </Card>
   );

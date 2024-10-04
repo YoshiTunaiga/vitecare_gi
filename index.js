@@ -62,6 +62,17 @@ app.get("/patient/:userId/register", async (req, res) => {
 });
 
 // POST CREATE USER DOCUMENT
+app.get("/patient/register", async (req, res) => {
+  try {
+    const newUser = req.body;
+    console.log("====================================");
+    console.log("newUser:", newUser);
+    console.log("====================================");
+    res.send(response);
+  } catch (error) {
+    console.error(error);
+  }
+});
 
 // ADMIN: GET USER APPOINTMENTS LIST
 app.get("/admin", async (req, res) => {
