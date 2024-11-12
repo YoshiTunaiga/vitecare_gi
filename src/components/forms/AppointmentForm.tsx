@@ -23,19 +23,21 @@ import SubmitButton from "../SubmitButton";
 import { Form } from "../ui/form";
 import { useNavigate } from "react-router-dom";
 
+type AppointmentFormProps = {
+  userId: string;
+  patientId: string;
+  type: "create" | "schedule" | "cancel";
+  appointment?: Appointment;
+  setOpen?: Dispatch<SetStateAction<boolean>>;
+};
+
 export const AppointmentForm = ({
   userId,
   patientId,
   type = "create",
   appointment,
   setOpen,
-}: {
-  userId: string;
-  patientId: string;
-  type: "create" | "schedule" | "cancel";
-  appointment?: Appointment;
-  setOpen?: Dispatch<SetStateAction<boolean>>;
-}) => {
+}: AppointmentFormProps) => {
   const router = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
 
