@@ -1,5 +1,5 @@
 <div>
-<img width="1200" alt="readmeimg" src="./public/readmeimg.svg">
+<img width="1200" alt="readmeimg" src="./public/readmeimg.svg" loading="lazy">
 
  <h3 align="center">A HealthCare Management System</h3>
 
@@ -99,7 +99,7 @@ Open [http://localhost:5173](http://localhost:5173) in your browser to view the 
 - [ ] **Send SMS on Appointment Confirmation:** Patients receive SMS notifications to confirm their appointment details.
 - [ ] **File Upload Using Appwrite Storage:** Users can upload and store files securely within the app using Appwrite storage services.
 - [ ] **Manage and Track Application Performance Using Sentry:** The application uses Sentry to monitor and track its performance and detect any errors.
- 
+
 # ➕ <a name="more">More</a>
 
 ## React + TypeScript + Vite

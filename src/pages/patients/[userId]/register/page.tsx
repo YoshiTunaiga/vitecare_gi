@@ -34,6 +34,7 @@ const Register = () => {
         height={1000}
         width={1000}
         alt="patient"
+        loading="lazy"
         className="side-img max-w-[390px]"
       />
     </div>

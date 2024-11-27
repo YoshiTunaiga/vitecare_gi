@@ -54,15 +54,27 @@ const PatientForm = () => {
         email: values.email,
         phone: values.phone,
       };
-
-      const response: { newUser?: any; isMember?: boolean } | any =
-        await createUser(user);
-
-      if (!response.isMember) {
-        navigate(`/patients/${response.newUser.$id}/register`);
-      } else {
-        navigate(`/patients/${response.newUser.$id}/new-appointment`);
-      }
+      console.log("LINE 57 ", user);
+      let response:
+        | { newUser?: any; isMember?: boolean; message?: string }
+        | any = {};
+      fetch(`http://localhost:8000/create-user`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(user),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log("LINE 68 ", data);
+          if (!data.isMember) {
+            navigate(`/patient/${data.newUser.$id}`);
+          } else {
+            navigate(`/patients/${data.newUser.$id}/new-appointment`);
+          }
+        })
+        .catch((error) => console.error(error));
     } catch (error) {
       console.log(error);
     }

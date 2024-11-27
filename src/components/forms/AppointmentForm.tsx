@@ -158,6 +158,7 @@ export const AppointmentForm = ({
                       width={32}
                       height={32}
                       alt="doctor"
+                      loading="lazy"
                       className="rounded-full border border-dark-500"
                     />
                     <p>{doctor.name}</p>

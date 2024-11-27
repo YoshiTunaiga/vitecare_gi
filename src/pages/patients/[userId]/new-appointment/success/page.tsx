@@ -47,12 +47,19 @@ const RequestSuccess = () => {
             height={1000}
             width={1000}
             alt="logo"
+            loading="lazy"
             className="h-10 w-fit"
           />
         </Link>
 
         <section className="flex flex-col items-center">
-          <img src={successgif} height={300} width={280} alt="success" />
+          <img
+            src={successgif}
+            height={300}
+            width={280}
+            alt="success"
+            loading="lazy"
+          />
           <h2 className="header mb-6 max-w-[600px] text-center">
             Your <span className="text-green-500">appointment request</span> has
             been successfully submitted!
@@ -68,6 +75,7 @@ const RequestSuccess = () => {
               alt="doctor"
               width={100}
               height={100}
+              loading="lazy"
               className="size-10"
             />
             <p className="whitespace-nowrap">Dr. {doctor?.name}</p>
@@ -78,6 +86,7 @@ const RequestSuccess = () => {
               height={24}
               width={24}
               alt="calendar"
+              loading="lazy"
               className="bg-green-700/50"
             />
             <p> {formatDateTime(appointment.schedule).dateTime}</p>

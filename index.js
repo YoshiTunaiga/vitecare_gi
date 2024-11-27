@@ -1,9 +1,8 @@
 import express from "express";
 import cors from "cors";
-import axios from "axios";
 import dotenv from "dotenv";
 import * as sdk from "node-appwrite";
-
+import { ID, Query } from "node-appwrite";
 dotenv.config({ path: "./.env.local" });
 
 const app = express();
@@ -12,6 +11,7 @@ const app = express();
 app.use(cors());
 
 const PORT = process.env.PORT || 5000;
+app.use(express.json());
 const client = new sdk.Client();
 const {
   PROJECT_ID,
@@ -45,32 +45,111 @@ app.get("/api/:key", (req, res) => {
       console.log(`========= APPROVED USER!  =========`);
       res.send({ user: "gi" });
     }
+    res.send({ message: "Accessing register" });
   } catch (error) {
-    console.error(error);
+    res
+      .status(500)
+      .send({ error: "An error occurred while registering the user" });
   }
 });
 
-// GET CURRENT USER BASIC DATA
-app.get("/patient/:userId/register", async (req, res) => {
+// GET SINGLE USER
+app.get("/patient/:userId", async (req, res) => {
   try {
-    console.log("====================================");
-    console.log("accessing register");
-    console.log("====================================");
+    const users = new sdk.Users(client);
+    const userId = req.params.userId;
+    const user = await users.get(userId);
+    res.send(JSON.parse(JSON.stringify(user)));
+  } catch (error) {
+    res
+      .status(500)
+      .send({ error: "An error occurred while fetching the user" });
+  }
+});
+
+// POST CURRENT USER BASIC DATA
+app.post("/patient/register", async (req, res) => {
+  try {
+    const databases = new sdk.Databases(client);
+    const registerPatient = req.body;
+    const newPatient = await databases.createDocument(
+      DATABASE_ID,
+      PATIENT_COLLECTION_ID,
+      ID.unique(),
+      {
+        identificationDocumentId: "",
+        identificationDocumentUrl: "",
+        ...registerPatient,
+      }
+    );
+
+    res.send(JSON.parse(JSON.stringify(newPatient)));
   } catch (error) {
     console.error(error);
   }
 });
 
 // POST CREATE USER DOCUMENT
-app.get("/patient/register", async (req, res) => {
+// Expected structure of newUser object:
+// {
+//   ID.unique(),
+//   email:string,
+//   phone:string,
+//   undefined, "required for password"
+//   name: string.
+// }
+app.post("/create-user", async (req, res) => {
   try {
-    const newUser = req.body;
-    console.log("====================================");
-    console.log("newUser:", newUser);
-    console.log("====================================");
-    res.send(response);
+    const users = new sdk.Users(client);
+    const { name, email, phone } = req.body;
+
+    const existingUser = await users.list([Query.equal("email", [email])]);
+    if (existingUser.total) {
+      res.send({
+        message: "User already exists",
+        newUser: existingUser.users[0],
+        isMember: true,
+      });
+    } else {
+      const result = await users.create(
+        ID.unique(),
+        email,
+        phone,
+        undefined,
+        name
+      );
+      // Respond with the created user (excluding sensitive information)
+      res.send({
+        message: "User registered successfully",
+        newUser: result,
+        isMember: false,
+      });
+    }
   } catch (error) {
-    console.error(error);
+    // Handle potential errors
+    console.error("User creation error:", error);
+
+    // Check for specific error types
+    if (error.name === "ValidationError") {
+      // Mongoose validation error
+      return res.status(400).json({
+        message: "Invalid user data",
+        errors: Object.values(error.errors).map((err) => err.message),
+      });
+    }
+
+    if (error.code === 11000) {
+      // Duplicate key error (e.g., duplicate email)
+      return res.status(409).json({
+        message: "User already exists",
+        field: Object.keys(error.keyPattern)[0],
+      });
+    }
+    // Generic server error
+    res.status(500).json({
+      message: "Server error during user creation",
+      error: error.message,
+    });
   }
 });
 

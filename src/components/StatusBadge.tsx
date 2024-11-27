@@ -15,6 +15,7 @@ export const StatusBadge = ({ status }: { status: Status }) => {
         alt="doctor"
         width={24}
         height={24}
+        loading="lazy"
         className="h-fit w-3"
       />
       <p

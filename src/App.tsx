@@ -20,7 +20,7 @@ function App() {
       <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/patients/:userId/register" element={<Register />} />
+          <Route path="/patient/:userId" element={<Register />} />
           <Route
             path="/patients/:userId/new-appointment"
             element={<NewAppointment />}

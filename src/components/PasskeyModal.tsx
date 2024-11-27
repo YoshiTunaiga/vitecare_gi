@@ -77,6 +77,7 @@ export const PasskeyModal = () => {
               alt="close"
               width={20}
               height={20}
+              loading="lazy"
               onClick={() => closeModal()}
               className="cursor-pointer"
             />

@@ -27,6 +27,7 @@ const StatCard = ({ count = 0, label, icon, type }: StatCardProps) => {
           height={32}
           width={32}
           alt="appointments"
+          loading="lazy"
           className="size-8 w-fit"
         />
         <CardTitle className="text-32-bold">{count}</CardTitle>

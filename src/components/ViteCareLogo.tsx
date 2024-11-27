@@ -10,6 +10,7 @@ const ViteCareLogo = () => {
         alt="vitecarelogo"
         height={1000}
         width={1000}
+        loading="lazy"
         className="w-fit"
       />
     </Link>

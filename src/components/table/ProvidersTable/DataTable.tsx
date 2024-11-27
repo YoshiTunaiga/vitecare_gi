@@ -103,7 +103,13 @@ export function DataTable<TData, TValue>({
           onClick={() => table.previousPage()}
           disabled={!table.getCanPreviousPage()}
           className="shad-gray-btn">
-          <img src={arrowIcon} width={24} height={24} alt="arrow" />
+          <img
+            src={arrowIcon}
+            width={24}
+            height={24}
+            alt="arrow"
+            loading="lazy"
+          />
         </Button>
         <Button
           variant="outline"
@@ -115,7 +121,8 @@ export function DataTable<TData, TValue>({
             src={arrowIcon}
             width={24}
             height={24}
-            alt="arrow "
+            alt="arrow"
+            loading="lazy"
             className="rotate-180"
           />
         </Button>

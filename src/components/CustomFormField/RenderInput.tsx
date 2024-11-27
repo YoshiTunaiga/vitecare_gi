@@ -34,6 +34,7 @@ export const RenderInput = ({
               src={props.iconSrc}
               height={24}
               width={24}
+              loading="lazy"
               alt={props.iconAlt || "icon"}
               className="ml-2"
             />
@@ -95,6 +96,7 @@ export const RenderInput = ({
             height={24}
             width={24}
             alt="user"
+            loading="lazy"
             className="ml-2"
           />
           <FormControl>

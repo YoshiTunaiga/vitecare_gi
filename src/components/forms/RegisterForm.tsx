@@ -6,7 +6,7 @@ import { FormProvider, useForm } from "react-hook-form";
 import { z } from "zod";
 import { useNavigate, useParams } from "react-router-dom";
 
-import { getUser, registerPatient } from "../../lib/actions/patient.actions";
+// import { getUser, registerPatient } from "../../lib/actions/patient.actions";
 import { PatientFormValidation } from "../../lib/validation";
 import {
   Doctors,
@@ -48,10 +48,16 @@ const RegisterForm = () => {
   useEffect(() => {
     setIsLoading(true);
     const fetchData = async (userId: string) => {
-      const userReturned = await getUser(userId);
-      if (userReturned) {
-        setUser(userReturned);
-      }
+      fetch(`http://localhost:8000/patient/${userId}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          setUser(data);
+        });
     };
 
     if (userId) {
@@ -110,11 +116,24 @@ const RegisterForm = () => {
         privacyConsent: values.privacyConsent,
       };
 
-      const newPatient = await registerPatient(patient);
+      // const newPatient = await registerPatient(patient);
+      fetch(`http://localhost:8000/patient/register`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(patient),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data) {
+            router(`/patients/${user.$id}/new-appointment`);
+          }
+        });
 
-      if (newPatient) {
-        router(`/patients/${user.$id}/new-appointment`);
-      }
+      // if (newPatient) {
+      //   router(`/patients/${user.$id}/new-appointment`);
+      // }
     } catch (error) {
       console.log(error);
     }
@@ -269,6 +288,7 @@ const RegisterForm = () => {
                         width={32}
                         height={32}
                         alt="doctor"
+                        loading="lazy"
                         className="rounded-full border border-dark-500"
                       />
                       <p>{doctor.name}</p>

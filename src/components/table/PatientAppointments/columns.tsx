@@ -65,6 +65,7 @@ export const columns: ColumnDef<Appointment>[] = [
             alt="doctor"
             width={100}
             height={100}
+            loading="lazy"
             className="size-8"
           />
           <p className="whitespace-nowrap">Dr. {doctor?.name}</p>
