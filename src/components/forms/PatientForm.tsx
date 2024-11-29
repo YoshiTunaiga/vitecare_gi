@@ -50,7 +50,7 @@ const PatientForm = () => {
         phone: values.phone,
       };
 
-      fetch(`http://localhost:8000/create-user`, {
+      fetch(`https://vitecare-backend.onrender.com/create-user`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -64,7 +64,7 @@ const PatientForm = () => {
           if (!data.isMember) {
             navigate(`/patient/${data.newUser.$id}`);
           } else {
-            navigate(`/patients/${data.newUser.$id}/new-appointment`);
+            navigate(`/patient/${data.newUser.$id}/new-appointment`);
           }
         });
       // .catch((error) => console.error(error));

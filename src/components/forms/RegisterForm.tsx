@@ -44,7 +44,7 @@ const RegisterForm = () => {
   useEffect(() => {
     setIsLoading(true);
     const fetchData = async (userId: string) => {
-      fetch(`http://localhost:8000/patient/${userId}`, {
+      fetch(`https://vitecare-backend.onrender.com/patient/${userId}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -113,7 +113,7 @@ const RegisterForm = () => {
       };
 
       // const newPatient = await registerPatient(patient);
-      fetch(`http://localhost:8000/patient/register`, {
+      fetch(`https://vitecare-backend.onrender.com/patient/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -123,7 +123,7 @@ const RegisterForm = () => {
         .then((res) => res.json())
         .then((data) => {
           if (data) {
-            router(`/patients/${user.$id}/new-appointment`);
+            router(`/patient/${user.$id}/new-appointment`);
           }
         });
 

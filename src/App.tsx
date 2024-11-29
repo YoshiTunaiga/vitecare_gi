@@ -3,11 +3,11 @@ import { Routes, Route } from "react-router-dom";
 
 // Pages
 import Home from "./pages/Home";
-import Register from "./pages/patients/[userId]/register/page";
-import NewAppointment from "./pages/patients/[userId]/new-appointment/page";
+import Register from "./pages/patient/[userId]/register/page";
+import NewAppointment from "./pages/patient/[userId]/new-appointment/page";
 import AdminPage from "./pages/admin/page";
-import RequestSuccess from "./pages/patients/[userId]/new-appointment/success/page";
-import MyAppointments from "./pages/patients/[userId]/my-appointments/page";
+import RequestSuccess from "./pages/patient/[userId]/new-appointment/success/page";
+import MyAppointments from "./pages/patient/[userId]/my-appointments/page";
 import NotFound from "./pages/NotFound";
 
 // Styles
@@ -23,15 +23,15 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/patient/:userId" element={<Register />} />
           <Route
-            path="/patients/:userId/new-appointment"
+            path="/patient/:userId/new-appointment"
             element={<NewAppointment />}
           />
           <Route
-            path="/patients/:userId/my-appointments"
+            path="/patient/:userId/my-appointments"
             element={<MyAppointments />}
           />
           <Route
-            path="/patients/:userId/new-appointment/success"
+            path="/patient/:userId/new-appointment/success"
             element={<RequestSuccess />}
           />
           {/* <Route path="/admin" element={<AdminPage />} /> */}
