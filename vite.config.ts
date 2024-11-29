@@ -27,12 +27,8 @@ export default ({ mode }: { mode: any }) => {
     server: {
       // TODO: CORS ACCESS BLOCKED
       proxy: {
-        "/users": {
-          target: "https://cloud.appwrite.io/v1",
-          changeOrigin: true,
-          secure: false,
-        },
-        "/api": "http://localhost:8000",
+        "/users": "https://vitecare-backend.onrender.com",
+        "/patient": "https://vitecare-backend.onrender.com",
       },
     },
     resolve: {
