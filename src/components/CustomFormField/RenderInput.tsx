@@ -3,6 +3,7 @@ import { E164Number } from "libphonenumber-js/core";
 import ReactDatePicker from "react-datepicker";
 import PhoneInput from "react-phone-number-input";
 import { CustomProps, FormFieldType } from "./CustomFormField";
+import { User, Mail, CalendarDays } from "lucide-react";
 // Components
 import { Checkbox } from "../ui/checkbox";
 import { FormControl } from "../ui/form";
@@ -18,6 +19,12 @@ import { Textarea } from "../ui/textarea";
 // Assets
 import calendarIcon from "../../assets/icons/calendar.svg";
 
+const iconSet = {
+  user: <User className="m-2" />,
+  mail: <Mail className="m-2" />,
+  calendarDaysIcon: <CalendarDays />,
+};
+
 export const RenderInput = ({
   field,
   props,
@@ -28,22 +35,13 @@ export const RenderInput = ({
   switch (props.fieldType) {
     case FormFieldType.INPUT:
       return (
-        <div className="flex rounded-md border border-dark-500 bg-dark-400">
-          {props.iconSrc && (
-            <img
-              src={props.iconSrc}
-              height={24}
-              width={24}
-              loading="lazy"
-              alt={props.iconAlt || "icon"}
-              className="ml-2"
-            />
-          )}
+        <div className="flex rounded-md border border-dark-500">
+          {props.iconSrc && iconSet[props.iconSrc as keyof typeof iconSet]}
           <FormControl>
             <Input
               placeholder={props.placeholder}
               {...field}
-              className="shad-input border-0 text-white"
+              className="shad-input border-0"
             />
           </FormControl>
         </div>
@@ -69,7 +67,7 @@ export const RenderInput = ({
             withCountryCallingCode
             value={field.value as E164Number | undefined}
             onChange={field.onChange}
-            className="input-phone text-white"
+            className="input-phone"
           />
         </FormControl>
       );
@@ -90,15 +88,8 @@ export const RenderInput = ({
       );
     case FormFieldType.DATE_PICKER:
       return (
-        <div className="flex rounded-md border border-dark-500 bg-dark-400">
-          <img
-            src={calendarIcon}
-            height={24}
-            width={24}
-            alt="user"
-            loading="lazy"
-            className="ml-2"
-          />
+        <div className="flex rounded-md border border-dark-500 ">
+          <CalendarDays className="m-2" />
           <FormControl>
             <ReactDatePicker
               showTimeSelect={props.showTimeSelect ?? false}
@@ -106,7 +97,7 @@ export const RenderInput = ({
               onChange={(date: Date | null) => field.onChange(date)}
               timeInputLabel="Time:"
               dateFormat={props.dateFormat ?? "MM/dd/yyyy"}
-              wrapperClassName="date-picker text-white"
+              wrapperClassName="date-picker"
             />
           </FormControl>
         </div>
@@ -116,7 +107,7 @@ export const RenderInput = ({
         <FormControl>
           <Select onValueChange={field.onChange} defaultValue={field.value}>
             <FormControl>
-              <SelectTrigger className="shad-select-trigger text-white">
+              <SelectTrigger className="shad-select-trigger">
                 <SelectValue placeholder={props.placeholder} />
               </SelectTrigger>
             </FormControl>

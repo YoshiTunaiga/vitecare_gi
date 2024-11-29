@@ -20,7 +20,7 @@ export interface CustomProps {
   name: string;
   label?: string;
   placeholder?: string;
-  iconSrc?: string;
+  iconSrc?: string | React.ReactNode;
   iconAlt?: string;
   disabled?: boolean;
   dateFormat?: string;

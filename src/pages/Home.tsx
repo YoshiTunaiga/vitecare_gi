@@ -8,11 +8,11 @@ import {
 import AdminForm from "../components/forms/AdminForm";
 import { Link } from "react-router-dom";
 import ViteCareLogo from "../components/ViteCareLogo";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Copyright } from "lucide-react";
 
 const homeTabs = [
   { name: "Patient", value: "patient", form: <PatientForm /> },
-  { name: "Admin", value: "admin", form: <AdminForm /> },
+  // { name: "Admin", value: "admin", form: <AdminForm /> },
 ];
 
 const Home = () => {
@@ -46,9 +46,12 @@ const Home = () => {
 
           {/* ========= FOOTER =========== */}
           <div className="text-14-regular my-5 flex justify-between">
-            <p className="justify-items-end text-light-200 xl:text-left">
-              <FontAwesomeIcon icon="fa-regular fa-copyright" /> 2024 ViteCare
-            </p>
+            <div className="copyright-left">
+              <div className="copyright-icon">
+                <Copyright size={16} />
+              </div>
+              <div>2024 ViteCare</div>
+            </div>
             <Link
               to="https://gidiaz.com"
               target="_blank"

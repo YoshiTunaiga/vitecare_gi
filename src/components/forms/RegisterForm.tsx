@@ -26,10 +26,6 @@ import { Label } from "../../components/ui/label";
 import { RadioGroup, RadioGroupItem } from "../../components/ui/radio-group";
 import { SelectItem } from "../../components/ui/select";
 
-// Assets
-import userIcon from "../../assets/icons/user.svg";
-import emailIcon from "../../assets/icons/email.svg";
-
 // Styles
 import "react-datepicker/dist/react-datepicker.css";
 import "react-phone-number-input/style.css";
@@ -147,7 +143,7 @@ const RegisterForm = () => {
         <FormProvider {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
-            className="flex-1 space-y-12">
+            className="flex-1 space-y-12 bg-white">
             <section className="space-y-4">
               <h1 className="header">Welcome 👋</h1>
               <p className="text-dark-200">Let us know more about yourself.</p>
@@ -165,7 +161,7 @@ const RegisterForm = () => {
                 name="name"
                 label="Name"
                 placeholder="John Doe"
-                iconSrc={userIcon}
+                iconSrc="user"
                 iconAlt="user"
                 autofill={user.name}
               />
@@ -178,7 +174,7 @@ const RegisterForm = () => {
                   name="email"
                   label="Email address"
                   placeholder="johndoe@gmail.com"
-                  iconSrc={emailIcon}
+                  iconSrc="mail"
                   iconAlt="email"
                   autofill={user.email}
                 />

@@ -10,7 +10,6 @@ import { useNavigate } from "react-router-dom";
 
 // Components
 import { UserFormValidation } from "../../lib/validation";
-import { createUser } from "../../lib/actions/patient.actions";
 import CustomFormField, {
   FormFieldType,
 } from "../CustomFormField/CustomFormField";
@@ -23,10 +22,6 @@ import {
   CardHeader,
   CardTitle,
 } from "../ui/card";
-
-//Assets
-import emailIcon from "../../assets/icons/email.svg";
-import userIcon from "../../assets/icons/user.svg";
 
 // Style
 import "react-phone-number-input/style.css";
@@ -54,10 +49,7 @@ const PatientForm = () => {
         email: values.email,
         phone: values.phone,
       };
-      console.log("LINE 57 ", user);
-      let response:
-        | { newUser?: any; isMember?: boolean; message?: string }
-        | any = {};
+
       fetch(`http://localhost:8000/create-user`, {
         method: "POST",
         headers: {
@@ -65,18 +57,19 @@ const PatientForm = () => {
         },
         body: JSON.stringify(user),
       })
-        .then((res) => res.json())
+        .then((res) => {
+          return res.json();
+        })
         .then((data) => {
-          console.log("LINE 68 ", data);
           if (!data.isMember) {
             navigate(`/patient/${data.newUser.$id}`);
           } else {
             navigate(`/patients/${data.newUser.$id}/new-appointment`);
           }
-        })
-        .catch((error) => console.error(error));
+        });
+      // .catch((error) => console.error(error));
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
 
     setIsLoading(false);
@@ -97,7 +90,7 @@ const PatientForm = () => {
               name="name"
               label="Full name"
               placeholder="John Doe"
-              iconSrc={userIcon}
+              iconSrc="user"
               iconAlt="user"
             />
 
@@ -107,7 +100,7 @@ const PatientForm = () => {
               name="email"
               label="Email"
               placeholder="johndoe@gmail.com"
-              iconSrc={emailIcon}
+              iconSrc="mail"
               iconAlt="email"
             />
 
@@ -121,7 +114,7 @@ const PatientForm = () => {
 
             <SubmitButton
               isLoading={isLoading}
-              className="text-white bg-green-500 w-full hover:bg-green-700">
+              className="text-white bg-green-500 w-full hover:bg-green-700 ">
               Get Started
             </SubmitButton>
           </form>

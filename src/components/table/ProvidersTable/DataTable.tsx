@@ -34,7 +34,7 @@ export function DataTable<TData, TValue>({
 }: DataTableProps<TData, TValue>) {
   const encryptedKey =
     typeof window !== "undefined"
-      ? window.localStorage.getItem("accessKey")
+      ? window.sessionStorage.getItem("accessKey")
       : null;
 
   useEffect(() => {

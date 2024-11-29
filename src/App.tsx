@@ -8,6 +8,7 @@ import NewAppointment from "./pages/patients/[userId]/new-appointment/page";
 import AdminPage from "./pages/admin/page";
 import RequestSuccess from "./pages/patients/[userId]/new-appointment/success/page";
 import MyAppointments from "./pages/patients/[userId]/my-appointments/page";
+import NotFound from "./pages/NotFound";
 
 // Styles
 import { ThemeProvider } from "./components/theme-provider";
@@ -33,7 +34,8 @@ function App() {
             path="/patients/:userId/new-appointment/success"
             element={<RequestSuccess />}
           />
-          <Route path="/admin" element={<AdminPage />} />
+          {/* <Route path="/admin" element={<AdminPage />} /> */}
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </ThemeProvider>
     </div>

@@ -16,7 +16,13 @@ const NewAppointment = () => {
 
   useEffect(() => {
     const fetchPatient = async (userId: string) => {
-      const patient = await getPatient(userId);
+      const response = await fetch(`http://localhost:8000/patient/${userId}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const patient = await response.json();
 
       if (patient) {
         setPatient(patient);

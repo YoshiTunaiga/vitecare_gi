@@ -32,7 +32,7 @@ const AppointmentsTab = () => {
 
   const encryptedKey =
     typeof window !== "undefined"
-      ? window.localStorage.getItem("accessKey")
+      ? window.sessionStorage.getItem("accessKey")
       : null;
 
   useEffect(() => {
