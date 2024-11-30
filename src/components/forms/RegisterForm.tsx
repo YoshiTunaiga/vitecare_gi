@@ -44,7 +44,7 @@ const RegisterForm = () => {
   useEffect(() => {
     setIsLoading(true);
     const fetchData = async (userId: string) => {
-      const apiUrl = `https://vitecare-backend.onrender.com/patient/${userId}`;
+      const apiUrl = `/patient/${userId}`;
 
       fetch(apiUrl, {
         method: "GET",
