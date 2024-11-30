@@ -50,8 +50,11 @@ const PatientForm = () => {
         phone: values.phone,
       };
 
-      fetch(`/users/create-user`, {
+      const apiUrl = `/users/create-user`;
+
+      fetch(apiUrl, {
         method: "POST",
+        credentials: "include",
         headers: {
           "Content-Type": "application/json",
         },

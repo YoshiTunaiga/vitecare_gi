@@ -10,7 +10,7 @@ const Register = () => {
     <div className="text-dark-200 bg-green-600 flex h-screen max-h-screen ">
       <section className="remove-scrollbar container bg-white mx-10">
         <div className="sub-container max-w-[860px] flex-1 flex-col py-10">
-          <header className=" flex items-center mb-5 rounded-2xl bg-green-600 py-5 shadow-lg xl:px-12">
+          <header className=" flex min-w-[350px] items-center mb-5 rounded-2xl bg-green-600 p-5 shadow-lg xl:px-12">
             <ViteCareLogo />
           </header>
 

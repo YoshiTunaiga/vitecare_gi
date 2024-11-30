@@ -27,8 +27,16 @@ export default ({ mode }: { mode: any }) => {
     server: {
       // TODO: CORS ACCESS BLOCKED
       proxy: {
-        "/users": "https://vitecare-backend.onrender.com",
-        "/patient": "https://vitecare-backend.onrender.com",
+        "/users": {
+          target: "https://vitecare-backend.onrender.com",
+          changeOrigin: true,
+          secure: false,
+        },
+        "/patient": {
+          target: "https://vitecare-backend.onrender.com",
+          changeOrigin: true,
+          secure: false,
+        },
       },
     },
     resolve: {
